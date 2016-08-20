@@ -3,6 +3,6 @@
 /local.properties
 /build
 .gradle
-#/gradle
+/gradle
 gradlew
 gradlew.bat
