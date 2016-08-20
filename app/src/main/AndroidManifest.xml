@@ -1,0 +1,121 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.qwwuyu.recite">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/><!-- Wifi状态 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/><!-- 蓝牙 -->
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <application
+        android:name=".config.TApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.LoadingActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/LauncherStyle">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <!-- 引导页面 -->
+        <activity
+            android:name=".activity.SplashActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 主界面 -->
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 单词列表界面 -->
+        <activity
+            android:name=".activity.WordListActivity"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 单词详情界面 -->
+        <activity
+            android:name=".activity.WordDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 单词乱序界面 -->
+        <activity
+            android:name=".activity.OutWordListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 设置界面 -->
+        <activity
+            android:name=".activity.SettingActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 搜索界面 -->
+        <activity
+            android:name=".activity.SearchActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 记忆界面 -->
+        <activity
+            android:name=".activity.MemoryActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 选择日期 -->
+        <activity
+            android:name=".activity.SelectDayActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/WheelStyle">
+        </activity>
+        <!-- 需要记忆的单词集合 -->
+        <activity
+            android:name=".activity.memory.MWordListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 需要记忆的单词分页浏览 -->
+        <activity
+            android:name=".activity.memory.MPagerWordActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 通过单词回忆翻译 -->
+        <activity
+            android:name=".activity.memory.MTraByWordActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+        <!-- 通过翻译回忆单词 -->
+        <activity
+            android:name=".activity.memory.MWordByTraActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommActTheme">
+        </activity>
+    </application>
+
+</manifest>

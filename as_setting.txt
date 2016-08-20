@@ -1,0 +1,168 @@
+﻿Appearance&Behavior
+	Appearance
+		*Theme(Darcula)
+	System Setting
+		Android SDK
+			*Android SDK Location(SDK path)
+Keymap
+	Shift+F6(add F2)
+	fix doc comment(add Shift+Alt+E)
+	Ctrl+/(add Ctrl+Shift+C)
+	Surround with Live Template(add Ctrl+Alt+T)
+	Alt+/(add to Alt+Ctrl+空格)
+Editor
+	General
+		*Show quick(y Delay:500)
+		Auto Import
+			*Add unambiguous(y)
+		Appearance
+			*Show line numbers(y)
+			*Show method separators(y)
+		Postfix Completion(后缀完成do:1)
+	Colors & Fonts
+		General(修改标记颜色do:2)
+	Code Style
+		*Right margin(150)
+		Java
+			JavaDoc
+				*After descriptions(n)
+				*do not warp one line comments(y)
+				*parameter descriptions on new line(n)
+			Wrapping and Braces
+				*Line breaks(y\n)
+				*Comment at first column(y)
+				*Ensure right margin is not exceeded(n\y)
+	File and Code Templates
+		Templates
+			*Class(del user)
+		Includes
+			*File Header(增加文件头do:3)
+	File Encodings
+		*IDE Encoding(utf-8)
+		*Project Encoding(utf-8)
+	Live Templates(增加代码块do:4)
+		*surround(n)
+Version Control
+	GitHub
+	Git
+	Subversion
+Build,Execution,Deployment
+	Build Tools
+		Gradle
+			*Use local gradle distribution(D:\develop\AS1.5\android-studio\gradle\gradle-2.8)
+			*Offline work(n)
+Tools
+	*Terminal(cmd控制台配置)
+
+Other(其他配置)
+File->Other Settings->Default Project Structure
+
+
+do:
+(1)
+
+(2)
+
+(3)
+/**
+ * Created by qiwei on ${DATE}.
+ */
+
+(4)
+---------增加组qw_base:
+Abbreviation:zz1
+Description:java注释
+Template text:
+/** $END$ */
+
+Abbreviation:xx1
+Description:java长注释
+Template text:
+/** ======================== $END$ ======================== */
+
+Abbreviation:zz2
+Description:xml注释
+Template text:
+<!-- $END$ -->
+
+
+Abbreviation:xx2
+Description:xml长注释
+Template text:
+<!-- ======================== $END$ ======================== -->
+
+Abbreviation:hand
+Description:Handler
+Template text:
+private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        }
+    });
+
+Abbreviation:swi
+Description:switch
+Template text:
+switch (v.getId()) {
+    case 0:
+        break;
+    default:
+        break;
+}
+
+Abbreviation:sys
+Description:gradle print
+Template text:
+println 'sys=' + "" +
+
+Abbreviation:sysout
+Description:打印
+Template text:
+System.out.println($END$);
+
+Abbreviation:view
+Description:view
+Template text:
+<View
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:layout_weight="1"/>
+
+---------增加组qw_project:
+Abbreviation:textview
+Description:textview
+Template text:
+<TextView
+    $END$
+    style="@style/def_tv"/>
+
+Abbreviation:useE
+Description:useE
+Template text:
+@Override
+protected boolean useEventBus() {
+    return true;
+}
+
+/** EventBus通信方法 */
+public void onEventMainThread(EventBean event) {
+    if (FieldConfig.EVENT_MAIN_FINISH == event.getWhat()) {
+        $END$
+    }
+}
+
+Abbreviation:onBind
+Description:onBind
+Template text:
+/** $END$ */
+@BindView(R.id.$value$)
+View $value$;
+
+if,if/else,for,try/catch,try/finally,try/catch/finally,Runnable,region

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ======================== 通用color ======================== -->
+    <!-- 透明色 -->
+    <color name="trans">#00000000</color>
+    <!-- 透明色(50) -->
+    <color name="trans50">#50000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white45">#72FFFFFF</color>
+    <color name="red">#ffff0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+    <color name="yellow">#ffffff00</color>
+    <color name="gray">#ff868686</color>
+    <color name="black">#ff000000</color>
+    <color name="orange">#ff7b2e</color>
+
+
+    <!-- ======================== 默认color ======================== -->
+    <!-- 常用的颜色 -->
+    <color name="comm_color">#4481D2</color>
+    <!-- 分割线颜色 -->
+    <color name="def_view_line">#ffcccccc</color>
+    <!-- 常用字体白色 -->
+    <color name="def_font_w">#ffffffff</color>
+    <!-- 常用字体黑色 -->
+    <color name="def_font_b">#ff222222</color>
+    <color name="def_font_22">#ff222222</color>
+    <color name="def_font_b5">#ffb5b5b5</color>
+    <color name="def_font_8b">#ff8b8b8b</color>
+    <color name="def_font_a6">#ffa6a6a6</color>
+    <!-- 默认文本-->
+    <color name="def_txt_normal">#ff222222</color>
+    <color name="def_txt_hint">#FFB4B4B4</color>
+    <!-- 默认输入框-->
+    <color name="def_edit_normal">#ff1F2120</color>
+    <color name="def_edit_hint">#FFB4B4B4</color>
+    <!-- 默认按钮-->
+    <color name="def_btn_txt">#ffffffff</color>
+    <color name="def_btn_bg_def">#fffe7252</color>
+    <color name="def_btn_bg_pressed">#e46850</color>
+    <color name="def_btn_bg_enabled">#ffb0b0b0</color>
+    <color name="def_btn_bg_enabled2">#fffe957d</color>
+    <color name="def_btn_bg_white_pressed">#11ffffff</color>
+    <color name="def_btn_bg_black_pressed">#11000000</color>
+    <!-- 默认透明白色Dialog背景色 -->
+    <color name="def_dialog_bg_white">#CCF4F4F4</color>
+    <color name="def_dialog_line">#ffbbbbbb</color>
+    <color name="def_dialog_btn_txt">#ff17a1f0</color>
+
+    <!-- ======================== 分模块_控件名_功能 等 ======================== -->
+
+
+    <!-- ======================== other ======================== -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+</resources>

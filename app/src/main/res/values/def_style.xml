@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 竖线 -->
+    <style name="view_line_h">
+        <item name="android:layout_width">@dimen/def_line_view</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@color/def_view_line</item>
+    </style>
+    <!-- 横线 -->
+    <style name="view_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/def_line_view</item>
+        <item name="android:background">@color/def_view_line</item>
+    </style>
+    <!-- 默认提交按钮样式 -->
+    <style name="default_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/def_btn_height</item>
+        <item name="android:paddingBottom">@dimen/def_btn_h_padding</item>
+        <item name="android:paddingTop">@dimen/def_btn_h_padding</item>
+        <item name="android:paddingLeft">@dimen/def_btn_w_padding</item>
+        <item name="android:paddingRight">@dimen/def_btn_w_padding</item>
+        <item name="android:textSize">@dimen/font32</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/def_btn_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/def_btn_marginRight</item>
+        <item name="android:background">@drawable/select_def_btn_bg</item>
+        <item name="android:textColor">@color/select_btn_txt</item>
+    </style>
+    <!-- 默认TextView -->
+    <style name="default_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font34</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColor">@color/def_txt_normal</item>
+        <item name="android:textColorHint">@color/def_txt_hint</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!-- 默认EditText -->
+    <style name="default_edit">
+        <item name="android:layout_height">@dimen/def_edit_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingRight">@dimen/def_edit_paddingRight</item>
+        <item name="android:paddingLeft">@dimen/def_edit_paddingLeft</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">@color/trans</item>
+        <item name="android:textColor">@color/def_font_22</item>
+        <item name="android:textColorHint">@color/def_txt_hint</item>
+        <item name="android:textSize">@dimen/font32</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/contentView"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <View
+        android:id="@+id/city_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        android:background="@color/trans50"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/city_ok"
+            style="@style/default_tv"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:text="确定"/>
+    </RelativeLayout>
+
+    <com.bigkoo.pickerview.lib.WheelView
+        android:id="@+id/selectDay_wheel_day"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"/>
+
+</LinearLayout>

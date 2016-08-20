@@ -1,0 +1,17 @@
+<resources>
+
+    <!-- 自定义按钮 -->
+    <declare-styleable name="QwSwitchBtn">
+        <attr name="bg_open" format="reference|color"/>
+        <attr name="bg_close" format="reference|color"/>
+        <attr name="bg_line" format="reference|color"/>
+        <attr name="btn_bg" format="reference|color"/>
+        <attr name="btn_line" format="reference|color"/>
+        <attr name="checked" format="boolean"/>
+        <attr name="btn_style">
+            <flag name="round" value="0x0"/>
+            <flag name="square" value="0x1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

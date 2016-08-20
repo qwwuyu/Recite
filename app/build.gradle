@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.qwwuyu.recite"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+//        支持jack配置,需要buildToolsVersion24.0.0
+//        jackOptions {
+//            enabled true
+//        }
+
+//        ndk {
+//            //设置支持的SO库架构
+//            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'mips'//, 'x86_64', 'arm64-v8a'
+//        }
+    }
+    buildTypes {
+        debug {
+            // 是否进行混淆
+            minifyEnabled false
+            // 混淆文件的位置
+            proguardFiles 'proguard-rules.pro'
+        }
+
+        release {
+            // 是否进行混淆
+            minifyEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 混淆文件的位置
+            proguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    productFlavors {
+    }
+
+//    设置jdk版本
+//    compileOptions {
+//        targetCompatibility JavaVersion.VERSION_1_7
+//        sourceCompatibility JavaVersion.VERSION_1_7
+//    }
+
+//    设置Heap大小
+//    dexOptions {
+//        javaMaxHeapSize "4g"
+//    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.3.0'
+    compile 'com.bigkoo:pickerview:2.0.8'
+}

@@ -1,0 +1,54 @@
+<resources>
+    <!-- ======================== 默认sp ======================== -->
+    <dimen name="font48">25sp</dimen>
+    <dimen name="font40">21sp</dimen>
+    <dimen name="font34">19sp</dimen>
+    <dimen name="font32">18sp</dimen>
+    <dimen name="font30">16sp</dimen>
+    <dimen name="font28">15sp</dimen>
+    <dimen name="font26">14sp</dimen>
+    <dimen name="font24">13sp</dimen>
+    <dimen name="font22">12sp</dimen>
+    <dimen name="font18">11sp</dimen>
+    <dimen name="font16">10sp</dimen>
+    <dimen name="font12">9sp</dimen>
+
+    <!-- ======================== 默认dp ======================== -->
+    <!-- 背景圆角度 -->
+    <dimen name="def_radius">5dp</dimen>
+    <!-- 分割线 -->
+    <dimen name="def_line_view">0.6dp</dimen>
+    <dimen name="def_line_view_margin">4dp</dimen>
+    <!-- 文本和图片的drawPadding -->
+    <dimen name="def_draw_padding">5dp</dimen>
+    <!-- 文本和文本的margin 由于文本本身有间隙 18px相当于 6px -->
+    <dimen name="def_txt_space18">4dp</dimen>
+    <dimen name="def_txt_space12">1dp</dimen>
+    <!-- 默认按钮 -->
+    <dimen name="def_btn_height">44dp</dimen>
+    <dimen name="def_btn_marginLeft">15dp</dimen>
+    <dimen name="def_btn_marginRight">15dp</dimen>
+    <dimen name="def_btn_top_margin">30dp</dimen>
+    <dimen name="def_btn_h_padding">5dp</dimen>
+    <dimen name="def_btn_w_padding">10dp</dimen>
+    <!-- 默认输入框 -->
+    <dimen name="def_edit_height">44dp</dimen>
+    <dimen name="def_edit_paddingLeft">16dp</dimen>
+    <dimen name="def_edit_paddingRight">16dp</dimen>
+    <!-- 默认item -->
+    <dimen name="def_item_padding">15dp</dimen>
+    <dimen name="def_item_height">44dp</dimen>
+    <dimen name="def_item_height110">55dp</dimen>
+    <!-- switch -->
+    <dimen name="switch_btn_w">60dp</dimen>
+    <dimen name="switch_btn_h">36dp</dimen>
+    <dimen name="switch_btn_margin_right">9dp</dimen>
+
+    <!-- ======================== 分模块_控件名/功能名_位子 ======================== -->
+    <!-- 自定义TitleView部分 -->
+    <dimen name="title_item_height">44dp</dimen>
+    <!-- 自定义Dialog部分 -->
+    <dimen name="dialog_width">268dp</dimen>
+    <dimen name="dialog_height">100dp</dimen>
+
+</resources>

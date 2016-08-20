@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <com.qwwuyu.recite.view.DeleteEditText
+        android:id="@+id/search_edit_content"
+        style="@style/default_edit"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:background="#cccccc"/>
+
+    <TextView
+        android:id="@+id/search_txt_go"
+        style="@style/default_btn"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:text="搜索"/>
+
+    <LinearLayout
+        android:id="@+id/search_ll_word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/search_wrod_text"
+            style="@style/default_tv"
+            android:layout_marginLeft="15dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
