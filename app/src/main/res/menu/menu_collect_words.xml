@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title=""
+        app:actionProviderClass="com.qwwuyu.recite.ui.ap.DividerActionProvider"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/collectWords_time"
+        android:icon="@drawable/img_menu"
+        android:title="@string/collectWords_menu_time"/>
+
+    <item
+        android:id="@+id/collectWords_letter"
+        android:icon="@drawable/img_menu"
+        android:title="@string/collectWords_menu_letter"/>
+
+    <item
+        android:id="@+id/collectWords_del"
+        android:icon="@drawable/img_menu"
+        android:title="@string/collectWords_menu_del"/>
+</menu>

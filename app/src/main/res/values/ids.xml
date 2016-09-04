@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- =================== 模块_控件_功能 =================== -->
+    <!-- 例子 -->
+    <item name="login_btn_register" type="id"/>
+    <!-- ToolBar -->
+    <item name="view_toolBar" type="id"/>
+    <!-- 根布局id -->
+    <item name="layout_root" type="id"/>
+
+    <item name="menu_item3" type="id"/>
+
+    <item name="menu_item4" type="id"/>
+    <!-- =================== other =================== -->
+    <item name="gv" type="id"/>
+</resources>

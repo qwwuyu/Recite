@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/orderWords_txt_title"
+        style="@style/def_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/def_itemTitle_h"
+        android:background="@color/black1E"
+        android:paddingLeft="@dimen/def_item_padding"
+        android:textColor="@color/black89"
+        android:textSize="@dimen/fontSmall"/>
+
+    <LinearLayout
+        android:id="@+id/orderWords_ll_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/def_item_padding"
+        android:paddingRight="@dimen/view_letter_w">
+
+        <TextView
+            android:id="@+id/orderWords_txt_word"
+            style="@style/def_tv"
+            android:layout_height="@dimen/def_item_height"/>
+
+        <View
+            style="@style/view_weight"/>
+
+        <ImageView
+            android:id="@+id/orderWords_img_collect"
+            style="@style/Toolbar_NavigationButton"
+            android:background="@drawable/select_def_item_black"/>
+    </LinearLayout>
+</LinearLayout>

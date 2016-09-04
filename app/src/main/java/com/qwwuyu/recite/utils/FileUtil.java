@@ -23,36 +23,40 @@ public class FileUtil {
     /** 文件存储的基础路径 */
     private String basePath;
     /** 文件存储的子路径 */
-    private String savePath = File.separator + "BackHome" + File.separator;
+    private String savePath = File.separator + "Base" + File.separator;
     /** 视频存放路径 */
     private String videoPath;
     /** 屏幕截图储存路径 */
-    private String screenshotPath;
+    private String imagePath;
     /** 临时存储路径 */
     private String cachePath;
-
+    /** Camera存储路径 */
+    private String cameraPath;
+    /** sound存储路径 */
+    public String baseSoundPath;
+    /** 单例 */
     private static FileUtil instance;
 
     private FileUtil(Context context) {
         /** 创建文件路径 */
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             basePath = Environment.getExternalStorageDirectory().getAbsolutePath() + savePath;
-            File file = new File(basePath);
-            isCrate = file.exists() || new File(basePath).mkdirs();
+            isCrate = new File(basePath).exists() || new File(basePath).mkdirs();
         }
         if (!isCrate) {
             basePath = context.getCacheDir().getPath() + savePath;
-            File file = new File(basePath);
-            isCrate = file.exists() || new File(basePath).mkdirs();
+            isCrate = new File(basePath).exists() || new File(basePath).mkdirs();
         }
         if (isCrate) {
             videoPath = basePath + "Video" + File.separator;
-            screenshotPath = basePath + "Screenshot" + File.separator;
+            imagePath = basePath + "Image" + File.separator;
             cachePath = basePath + "Cache" + File.separator;
             new File(videoPath).mkdirs();
-            new File(screenshotPath).mkdirs();
+            new File(imagePath).mkdirs();
             new File(cachePath).mkdirs();
         }
+        baseSoundPath = context.getCacheDir().getPath() + savePath + "sound";
+        new File(baseSoundPath).mkdirs();
         /** 创建root命令路径 */
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
             if (new File(rootLessICSPath).exists()) {
@@ -69,6 +73,12 @@ public class FileUtil {
         if (!new File(nowRootBasePath).exists() && !new File(nowRootBasePath).mkdirs()) {
             nowRootBasePath = null;
         }
+        /** 创建camera路径 */
+        File appDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM + "/Camera");
+        if (appDir.exists() || appDir.mkdir() || appDir.mkdirs()) {
+            cameraPath = appDir.getAbsolutePath();
+        }
+        log();
     }
 
     public static synchronized void init(Context context) {
@@ -88,11 +98,11 @@ public class FileUtil {
         return videoPath + "video_" + tag + ".mp4";
     }
 
-    public String getScreenshotPathByTag(Object tag) {
-        return screenshotPath + "img_" + tag + ".jpg";
+    public String getImagePathByTag(Object tag) {
+        return imagePath + "img_" + tag + ".jpg";
     }
 
-    public String getImgPathByTag(Object tag) {
+    public String getCacheByTag(Object tag) {
         return cachePath + "img_" + tag + ".jpg";
     }
 
@@ -112,6 +122,12 @@ public class FileUtil {
         return nowRootBasePath != null;
     }
 
+    public void log() {
+        LogUtil.i("isCrate " + isCrate);
+        LogUtil.i("nowRootBasePath " + nowRootBasePath);
+        LogUtil.i("basePath " + basePath);
+    }
+
     public String getCachePath() {
         return cachePath;
     }
@@ -120,7 +136,31 @@ public class FileUtil {
         return videoPath;
     }
 
-    public String getScreenshotPath() {
-        return screenshotPath;
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public String getCameraPath() {
+        return cameraPath;
+    }
+
+    public String getTempImgPath() {
+        return imagePath + "temp.jpg";
+    }
+
+    public String getSmallImgPath() {
+        return imagePath + "small.jpg";
+    }
+
+    public static boolean dirUriPath(Context context, String path) {
+        if (path != null) {
+            File file = new File(path);
+            if (path.contains(".")) {
+                return file.getParentFile().exists() || file.getParentFile().mkdirs();
+            } else {
+                return file.exists() || file.mkdirs();
+            }
+        }
+        return false;
     }
 }

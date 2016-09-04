@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <com.qwwuyu.recite.ui.PressedCardView
+        android:id="@+id/word_card"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/def_item_height"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="@dimen/def_item_padding"
+        android:layout_marginRight="@dimen/def_item_padding"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="@dimen/def_radius"
+        app:cardElevation="@dimen/def_elevation">
+
+        <com.qwwuyu.recite.ui.PressedTextView
+            android:id="@+id/word_txt_item"
+            style="@style/def_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/def_item_padding"
+            android:textColor="@color/select_card_txt"/>
+    </com.qwwuyu.recite.ui.PressedCardView>
+</RelativeLayout>

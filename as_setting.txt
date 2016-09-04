@@ -131,9 +131,7 @@ Abbreviation:view
 Description:view
 Template text:
 <View
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:layout_weight="1"/>
+    style="@style/view_weight"/>
 
 ---------增加组qw_project:
 Abbreviation:textview

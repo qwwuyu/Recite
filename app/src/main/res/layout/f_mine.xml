@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/def_content_bg"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/mine_ll_num4day"
+        style="@style/def_item"
+        android:paddingRight="@dimen/def_item_padding">
+
+        <ImageView
+            style="@style/def_item_icon"
+            android:src="@drawable/img_mine_num"/>
+
+        <TextView
+            style="@style/def_tv"
+            android:text="@string/mine_num4day"/>
+
+        <View
+            style="@style/view_weight"/>
+
+        <TextView
+            android:id="@+id/mine_txt_num4day"
+            style="@style/def_tv"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mine_ll_appNum"
+        style="@style/def_item"
+        android:paddingRight="@dimen/def_item_padding">
+
+        <ImageView
+            style="@style/def_item_icon"
+            android:src="@drawable/img_mine_num"/>
+
+        <TextView
+            style="@style/def_tv"
+            android:text="@string/mine_appNum_hint"/>
+
+        <View
+            style="@style/view_weight"/>
+
+        <TextView
+            android:id="@+id/mine_txt_appNum"
+            style="@style/def_tv"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/img_arrow_right_gray"/>
+    </LinearLayout>
+</LinearLayout>

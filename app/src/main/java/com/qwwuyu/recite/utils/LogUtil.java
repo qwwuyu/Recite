@@ -2,13 +2,21 @@ package com.qwwuyu.recite.utils;
 
 import android.util.Log;
 
+import com.qwwuyu.recite.config.ReleaseConfig;
+
+
 /**
- * Log打印类
- * Created by qw on 2016/5/29.
+ * 日志工具
+ * Created by qiwei on 2016/8/4.
  */
 public class LogUtil {
-    /** 是否显示日志 */
-    public static final boolean SHOW_LOG = true;
+    private static final boolean SHOW_LOG = ReleaseConfig.IS_DEBUG;
+
+    public static void exception(Exception e) {
+        if (SHOW_LOG && e != null) {
+            e.printStackTrace();
+        }
+    }
 
     public static void i(Object obj) {
         if (SHOW_LOG && obj != null) {

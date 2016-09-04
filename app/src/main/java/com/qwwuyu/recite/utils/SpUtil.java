@@ -13,10 +13,10 @@ public class SpUtil {
     private static SpUtil spUtil;
     private static SharedPreferences sp;
     private static final String SP_NAME = "SharedPreferences_comm";
-    public static final String LOGIN_NAME = "loginName"; //登录名
-    public static final String PASSWORD = "password";  //密码
-    public static final String PLACE_NAME = "place_name";  //地区名字
-    public static final String PLACE_NUM = "place_num";  //地区号
+    public static final String SP_FIRST_USE = "sp_first_use";
+    public static final String SP_COLLECT_MODE = "sp_collect_mode";
+    public static final String SP_WORD4DAY = "sp_word4day";
+    public static final String SP_TODAY = "sp_today";
 
     /**
      * 获取一个操作sp数据的实例
@@ -32,8 +32,8 @@ public class SpUtil {
         return spUtil;
     }
 
-    public SpUtil(String fileKey, int mode) {
-        sp = TApplication.getContext().getSharedPreferences(fileKey, mode);
+    private SpUtil(String fileKey, int mode) {
+        sp = TApplication.context.getSharedPreferences(fileKey, mode);
     }
 
     /**

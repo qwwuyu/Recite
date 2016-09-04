@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/def_content_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/def_toolBar">
+
+        <View style="@style/view_line_h"
+              android:background="@drawable/inset_menu_divider"/>
+
+        <TextView
+            style="@style/ToolBar_Title"
+            android:text="@string/title_collectWords"/>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/wordList_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true"
+            android:scrollbars="vertical"/>
+
+        <ViewStub
+            android:id="@+id/error_vs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout="@layout/in_error"/>
+    </RelativeLayout>
+</LinearLayout>

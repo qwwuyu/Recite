@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/def_content_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/def_toolBar">
+
+        <View style="@style/view_line_h"
+              android:background="@drawable/inset_menu_divider"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <com.qwwuyu.recite.ui.SearchEditText
+                android:id="@+id/searchWord_edit"
+                style="@style/def_edit"
+                android:drawableLeft="@drawable/img_search"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/whiteFF"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/searchWord_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="true"
+            android:scrollbars="vertical"/>
+
+        <ViewStub
+            android:id="@+id/error_vs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout="@layout/in_error"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/shape_bg_splash"
+              android:orientation="vertical"
+              tools:context=".activity.SplashActivity">
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="3"/>
+
+    <TextView
+        android:id="@+id/splash_txt_use"
+        style="@style/def_btn"
+        android:text="@string/splash_txt_use"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:id="@+id/splash_txt_version"
+        style="@style/def_tv"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:singleLine="false"
+        android:text="@string/splash_txt_version"
+        android:textColor="@color/white72"/>
+</LinearLayout>

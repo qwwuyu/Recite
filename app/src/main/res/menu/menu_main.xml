@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--
+          app:showAsAction
+     　1、always：使菜单项一直显示在ToolBar上。
+　   　2、ifRoom：如果有足够的空间，这个值会使菜单项显示在ToolBar上。
+　   　3、never：使菜单项永远都不出现在ToolBar上,在…的子项中显示。
+　   　4、withText：使菜单项和它的图标，菜单文本一起显示。
+     -->
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/img_search"
+        android:title="@string/search"
+        app:showAsAction="always"/>
+
+    <item
+        android:title=""
+        app:actionProviderClass="com.qwwuyu.recite.ui.ap.DividerActionProvider"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/menu_collect"
+        android:icon="@drawable/img_menu"
+        android:title="@string/collect"/>
+
+    <item
+        android:id="@+id/menu_orderWords"
+        android:icon="@drawable/img_menu"
+        android:title="@string/orderWords"/>
+
+    <item
+        android:id="@+id/menu_indexWords"
+        android:icon="@drawable/img_menu"
+        android:title="@string/indexWords"/>
+</menu>

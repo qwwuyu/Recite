@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/def_content_bg"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/def_toolBar">
+
+        <View style="@style/view_line_h"
+              android:background="@drawable/inset_menu_divider"/>
+
+        <TextView
+            style="@style/ToolBar_Title"
+            android:text="@string/title_orderWordList"/>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/orderWords_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fadeScrollbars="true"
+            android:scrollbars="vertical"/>
+
+        <com.qwwuyu.recite.ui.LetterIndexView
+            android:id="@+id/orderWords_indexView"
+            android:layout_width="@dimen/view_letter_w"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/orderWords_txt_letter"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_bg_letter"
+            android:gravity="center"
+            android:textColor="@color/whiteFF"
+            android:textSize="@dimen/fontLetter"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</LinearLayout>

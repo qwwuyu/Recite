@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 竖线 -->
+    <style name="view_weight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <!-- 默认toolBar样式 -->
+    <style name="def_toolBar">
+        <item name="android:id">@id/view_toolBar</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/toolBar_height</item>
+        <item name="android:minHeight">@dimen/toolBar_height</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="titleTextAppearance">@style/ToolBar_Title</item>
+    </style>
+    <!-- 竖线 -->
+    <style name="view_line_h">
+        <item name="android:layout_width">@dimen/def_view_line</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@color/def_view_line</item>
+    </style>
+    <!-- 横线 -->
+    <style name="view_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/def_view_line</item>
+        <item name="android:background">@color/def_view_line</item>
+    </style>
+    <!-- 默认提交按钮样式 -->
+    <style name="def_btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/def_btn_height</item>
+        <item name="android:paddingBottom">@dimen/def_btn_h_padding</item>
+        <item name="android:paddingTop">@dimen/def_btn_h_padding</item>
+        <item name="android:paddingLeft">@dimen/def_btn_w_padding</item>
+        <item name="android:paddingRight">@dimen/def_btn_w_padding</item>
+        <item name="android:textSize">@dimen/fontNormal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/def_btn_marginLeft</item>
+        <item name="android:layout_marginRight">@dimen/def_btn_marginRight</item>
+        <item name="android:background">@drawable/select_def_btn_bg</item>
+        <item name="android:textColor">@color/select_btn_txt</item>
+    </style>
+    <!-- 默认TextView -->
+    <style name="def_tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/fontNormal</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColor">@color/def_txt_normal</item>
+        <item name="android:textColorHint">@color/def_txt_hint</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!-- 默认EditText -->
+    <style name="def_edit">
+        <item name="android:layout_height">@dimen/def_edit_height</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingRight">@dimen/def_edit_paddingRight</item>
+        <item name="android:paddingLeft">@dimen/def_edit_paddingLeft</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">@color/trans</item>
+        <item name="android:textColor">@color/def_font_22</item>
+        <item name="android:textColorHint">@color/def_txt_hint</item>
+        <item name="android:textSize">@dimen/fontNormal</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!-- 默认RecyclerView -->
+    <style name="def_rv">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!-- 默认item -->
+    <style name="def_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/def_item_height</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/select_def_item</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <!-- 默认item -->
+    <style name="def_item_icon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/def_item_padding</item>
+        <item name="android:layout_marginRight">@dimen/def_item_padding</item>
+    </style>
+
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Toolbar样式 -->
+    <style name="ToolBar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
+    <!-- ToolBar的Title样式 -->
+    <style name="ToolBar_Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/fontLarge</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/def_txt_padding</item>
+        <item name="android:paddingRight">@dimen/def_txt_padding</item>
+    </style>
+
+    <!-- actionOverflowMenuStyle样式 Widget.AppCompat.PopupMenu.Overflow 继承后v21有BUG-->
+    <style name="ToolBar_Popup">
+        <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">@drawable/d9_popup_bg2</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:popupAnimationStyle">@style/PopupWindowAnimation</item>
+    </style>
+
+    <style name="PopupWindowAnimation">
+        <item name="android:windowEnterAnimation">@anim/grow_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/shrink_fade_out</item>
+    </style>
+
+    <!-- android:dropDownListViewStyle 样式 -->
+    <style name="MyDropDownListViewStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:listSelector">@drawable/select_item_tool_popup</item>
+        <item name="android:divider">@drawable/shape_bg_divider_dark</item>
+    </style>
+
+    <!-- NavigationButton样式 Base.Widget.AppCompat.Toolbar.Button.Navigation -->
+    <style name="Toolbar_NavigationButton" parent="android:Widget">
+        <item name="android:background">@drawable/select_def_item_white</item>
+        <item name="android:minWidth">@dimen/toolBar_ab_w</item>
+        <item name="android:minHeight">@dimen/toolBar_height</item>
+        <item name="android:layout_width">@dimen/toolBar_ab_w</item>
+        <item name="android:layout_height">@dimen/toolBar_height</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ActionButton样式 Widget.AppCompat.ActionButton -->
+    <style name="ToolBar_ActionButton" parent="android:Widget">
+        <item name="android:background">@drawable/select_def_item_white</item>
+        <item name="android:minWidth">@dimen/toolBar_ab_w</item>
+        <item name="android:minHeight">@dimen/toolBar_height</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- ActionButtonOverflow样式 Widget.AppCompat.ActionButton.Overflow -->
+    <style name="ToolBar_ActionButtonOverflow">
+        <item name="android:src">@drawable/img_more</item>
+        <item name="android:background">@drawable/select_def_item_white</item>
+        <item name="android:minWidth">@dimen/toolBar_abo_w</item>
+        <item name="android:minHeight">@dimen/toolBar_height</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:contentDescription">@string/ActionButtonOverflow</item>
+    </style>
+</resources>

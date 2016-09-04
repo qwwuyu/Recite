@@ -10,9 +10,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-/**
- * url转绝对路径
- */
+/** 通过uri获取绝对路径 */
 public class GetPathUtil {
     /**
      * 专为Android4.4设计的从Uri获取文件绝对路径，以前的方法已不好使

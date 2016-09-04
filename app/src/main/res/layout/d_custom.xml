@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/def_item_padding">
+
+    <LinearLayout
+        android:layout_width="@dimen/dialog_width"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_bg_custom"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/custom_txt_title"
+            style="@style/def_tv"
+            android:layout_marginLeft="@dimen/def_item_padding"
+            android:layout_marginRight="@dimen/def_item_padding"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:minHeight="40dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="false"
+            android:text="@string/dialog_title_hint"/>
+
+        <TextView
+            android:id="@+id/custom_txt_msg"
+            style="@style/def_tv"
+            android:layout_marginLeft="@dimen/def_item_padding"
+            android:layout_marginRight="@dimen/def_item_padding"
+            android:gravity="top|center_horizontal"
+            android:minHeight="50dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="false"
+            android:textSize="@dimen/fontNormal"
+            android:visibility="gone"/>
+
+        <View
+            style="@style/view_line"
+            android:background="@color/def_dialog_line"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/def_btn_height"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/custom_txt_btn_left"
+                style="@style/def_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/def_dialog_btn_txt"/>
+
+            <View
+                android:id="@+id/custom_view_line"
+                style="@style/view_line_h"
+                android:background="@color/def_dialog_line"/>
+
+            <TextView
+                android:id="@+id/custom_txt_btn_right"
+                style="@style/def_tv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/ok"
+                android:textColor="@color/def_dialog_btn_txt"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

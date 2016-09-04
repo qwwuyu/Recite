@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="@dimen/def_radius"/>
 
-    <item android:state_pressed="true"><shape>
-        <corners android:radius="@dimen/def_radius" />
+            <solid android:color="@color/def_btn_bg_pressed"/>
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape>
+            <corners android:radius="@dimen/def_radius"/>
 
-        <solid android:color="@color/def_btn_bg_pressed"/>
-    </shape></item>
-    <item android:state_enabled="false"><shape>
-        <corners android:radius="@dimen/def_radius" />
+            <solid android:color="@color/def_btn_bg_enabled"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="@dimen/def_radius"/>
 
-        <solid android:color="@color/def_btn_bg_enabled"/>
-    </shape></item>
-    <item><shape>
-        <corners android:radius="@dimen/def_radius" />
-
-        <solid android:color="@color/def_btn_bg_def"/>
-    </shape></item>
-
+            <solid android:color="@color/def_btn_bg_def"/>
+        </shape>
+    </item>
 </selector>

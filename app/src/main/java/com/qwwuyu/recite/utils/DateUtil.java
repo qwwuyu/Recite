@@ -1,8 +1,8 @@
 package com.qwwuyu.recite.utils;
 
 /**
- * 日期工具类
- * Created by qiwei on 2016/6/24.
+ * 处理日期相关工具
+ * Created by qiwei on 2016/8/4.
  */
 public class DateUtil {
 }

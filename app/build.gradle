@@ -1,24 +1,22 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-apt' //编译时注解工具
+apply plugin: 'org.greenrobot.greendao' //数据库
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.1"
 
     defaultConfig {
         applicationId "com.qwwuyu.recite"
         minSdkVersion 15
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
-//        支持jack配置,需要buildToolsVersion24.0.0
-//        jackOptions {
-//            enabled true
-//        }
+        int major = 1, minor = 0, maintenance = 1
+        versionCode major * 1000 + minor * 100 + maintenance
+        versionName major + "." + minor + "." + maintenance
 
-//        ndk {
-//            //设置支持的SO库架构
-//            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'mips'//, 'x86_64', 'arm64-v8a'
-//        }
+        ndk {//设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'mips'//, 'x86_64', 'arm64-v8a'
+        }
     }
     buildTypes {
         debug {
@@ -37,25 +35,25 @@ android {
             proguardFiles 'proguard-rules.pro'
         }
     }
-
     productFlavors {
     }
+}
 
-//    设置jdk版本
-//    compileOptions {
-//        targetCompatibility JavaVersion.VERSION_1_7
-//        sourceCompatibility JavaVersion.VERSION_1_7
-//    }
-
-//    设置Heap大小
-//    dexOptions {
-//        javaMaxHeapSize "4g"
-//    }
+ext {
+    supportVersion = '23.2.1'
+    jakewhartonVersion = '8.2.1'
+    greendaoVersion = '3.1.0'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.bigkoo:pickerview:2.0.8'
+    compile "com.android.support:appcompat-v7:${supportVersion}"
+    compile "com.android.support:recyclerview-v7:${supportVersion}"// RecyclerView wrap_content work for 23.2.1
+    compile "com.android.support:cardview-v7:${supportVersion}"
+    compile "com.android.support:design:${supportVersion}"
+    compile "com.jakewharton:butterknife:${jakewhartonVersion}"// butterknife findView bindClick
+    apt "com.jakewharton:butterknife-compiler:${jakewhartonVersion}"// butterknife findView bindClick
+    compile "org.greenrobot:greendao:${greendaoVersion}"// greenDAO 数据库框架
+    compile 'com.bigkoo:pickerview:2.0.8'//PickerView IOS时间轮
+    compile project(':slidrLibrary')//侧滑退出控件
 }

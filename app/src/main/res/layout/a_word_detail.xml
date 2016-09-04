@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/layout_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/def_toolBar">
+
+        <View style="@style/view_line_h"
+              android:background="@drawable/inset_menu_divider"/>
+
+        <TextView
+            style="@style/ToolBar_Title"
+            android:text="单词详情"/>
+    </android.support.v7.widget.Toolbar>
+
+    <com.qwwuyu.recite.ui.WordView
+        android:id="@+id/wordDetail_wordView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

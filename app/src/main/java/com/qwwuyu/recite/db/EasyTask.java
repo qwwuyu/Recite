@@ -5,12 +5,13 @@ import android.os.Handler;
 import android.os.Message;
 
 /**
- * 简单的线程
- * Created by qw on 2016/5/29.
+ * 简单的
+ * Created by qw on 2016/8/14.
  */
 public abstract class EasyTask<T> implements Runnable {
-
-    /** 异步处理Handler对象 */
+    /**
+     * 异步处理Handler对象
+     */
     protected Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -20,7 +21,6 @@ public abstract class EasyTask<T> implements Runnable {
 
     public EasyTask() {
     }
-
 
     public EasyTask(Context context) {
     }

@@ -90,16 +90,22 @@
 -keepclasseswithmembers class * {
     @android.support.annotation.Keep <init>(...);
 }
-
 -keepattributes InnerClasses -dontoptimize
-############################ 以上为固定 #########################
+################### 以上固定
 
-
-#EventBug keep
--keepclassmembers class ** {
+################### jar
+#EventBus keep
+-keep class ** {
     public void onEvent*(**);
     public void onEventMainThread(**);
 }
--keepclassmembers class com.qwwuyu.recite.bean.**{*;}
-################### jar
-
+-keep class com.qwwuyu.recite.bean.EventBean{*;}
+#greenDAO
+-keepclassmembers class * extends org.greenrobot.greendao.AbstractDao {
+public static java.lang.String TABLENAME;
+}
+-keep class **$Properties
+# If you do not use SQLCipher:
+-dontwarn org.greenrobot.greendao.database.**
+# If you do not use Rx:
+-dontwarn org.greenrobot.greendao.rx.**

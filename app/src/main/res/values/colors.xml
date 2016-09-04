@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ======================== 通用color ======================== -->
-    <!-- 透明色 -->
+    <!-- ======================== 基础color ======================== -->
     <color name="trans">#00000000</color>
-    <!-- 透明色(50) -->
     <color name="trans50">#50000000</color>
     <color name="white">#FFFFFF</color>
-    <color name="white45">#72FFFFFF</color>
+    <color name="whiteFC">#FCFCFC</color>
+    <color name="whiteF4">#F4F4F4</color>
+    <color name="white72">#72FFFFFF</color>
     <color name="red">#ffff0000</color>
     <color name="green">#00FF00</color>
     <color name="blue">#0000FF</color>
@@ -15,16 +15,49 @@
     <color name="black">#ff000000</color>
     <color name="orange">#ff7b2e</color>
 
+    <!-- All黑色[87%普通文字][54%减淡文字][26%禁用状态/提示文字][12%分隔线] -->
+    <color name="blackDD">#dd000000</color>
+    <color name="black89">#89000000</color>
+    <color name="black42">#42000000</color>
+    <color name="black1E">#1e000000</color>
+    <!-- All白色[100%普通文字][70%减淡文字][30%禁用状态/提示文字][12%分隔线] -->
+    <color name="whiteFF">#ffffffff</color>
+    <color name="whiteB2">#b2ffffff</color>
+    <color name="white4C">#4cffffff</color>
+    <color name="white1e">#1effffff</color>
+    <!-- best蓝色 -->
+    <color name="blue_bg_def">#ff2299ff</color>
+    <color name="blue_bg_pressed">#ff1188ee</color>
+    <color name="blue50_bg_def">#502299ff</color>
+    <color name="blue50_bg_pressed">#501188ee</color>
+    <color name="blue_bg_enabled">#ffb0b0b0</color>
+    <!-- best橘色 -->
+    <color name="orange_bg_def">#ffff9977</color>
+    <color name="orange_bg_pressed">#ffe46850</color>
+    <color name="orange50_bg_def">#55ff9977</color>
+    <color name="orange50_bg_pressed">#55e46850</color>
+    <color name="orange_bg_enabled">#ffb0b0b0</color>
+    <!-- 红粉色 -->
+    <color name="red_def">#FF4081</color>
+    <color name="red_light">#FF80AB</color>
+    <color name="red_dark">#F50057</color>
+    <!-- 蓝色 -->
+    <color name="blue_def">#3F51B5</color>
+    <color name="blue_light">#C5CAE9</color>
+    <color name="blue_dark">#303F9F</color>
 
     <!-- ======================== 默认color ======================== -->
+    <!-- 深色的遮罩透明度在20%-40%之间，浅色的遮罩透明度在40%-60%之间 -->
     <!-- 常用的颜色 -->
-    <color name="comm_color">#4481D2</color>
+    <color name="comm_color">#ff2299ff</color>
+    <!-- 默认界面背景色 -->
+    <color name="def_content_bg">#ffebebeb</color>
     <!-- 分割线颜色 -->
     <color name="def_view_line">#ffcccccc</color>
+    <color name="def_view_line_dark">#ff313236</color>
     <!-- 常用字体白色 -->
     <color name="def_font_w">#ffffffff</color>
     <!-- 常用字体黑色 -->
-    <color name="def_font_b">#ff222222</color>
     <color name="def_font_22">#ff222222</color>
     <color name="def_font_b5">#ffb5b5b5</color>
     <color name="def_font_8b">#ff8b8b8b</color>
@@ -47,13 +80,24 @@
     <color name="def_dialog_bg_white">#CCF4F4F4</color>
     <color name="def_dialog_line">#ffbbbbbb</color>
     <color name="def_dialog_btn_txt">#ff17a1f0</color>
+    <!-- 默认item添加选择色 -->
+    <color name="def_item_black">#22000000</color>
+    <color name="def_item_white">#22ffffff</color>
+    <color name="def_item_normal">#ffffffff</color>
+    <color name="def_item_pressed">#ffd9d9d9</color>
 
     <!-- ======================== 分模块_控件名_功能 等 ======================== -->
+    <color name="toolBar_item_pressed">#ff303135</color>
 
 
     <!-- ======================== other ======================== -->
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <!-- ToolBar背景色,主色 -->
+    <color name="colorPrimary">#ff343538</color>
+    <!-- 状态栏背景色,深一级的主色 -->
+    <color name="colorPrimaryDark">#ff2C2D30</color>
+    <!-- 控件主色 -->
+    <color name="colorAccent">#3F51B5</color>
+    <!-- ToolBar字体色 -->
+    <color name="textColorPrimary">#FDFEFF</color>
 
 </resources>

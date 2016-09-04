@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Resources;
+import android.net.DhcpInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -30,16 +31,18 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
 /**
- * 系统工具类
+ * 系统相关工具类
  */
 public class SystemUtil {
 
-    public static PackageManager getPackgeManager(Context context) {
+    public static PackageManager getPackageManager(Context context) {
         return context.getPackageManager();
     }
 
@@ -48,7 +51,7 @@ public class SystemUtil {
      *
      * @return versionCode
      */
-    public static int getCurrentVersionCode(Context context) {
+    public static int getVersionCode(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
             PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
@@ -64,7 +67,7 @@ public class SystemUtil {
      *
      * @return versionName
      */
-    public static String getCurrentVersionName(Context context) {
+    public static String getVersionName(Context context) {
         PackageManager packageManager = context.getPackageManager();
         try {
             PackageInfo packInfo = packageManager.getPackageInfo(context.getPackageName(), 0);
@@ -76,6 +79,112 @@ public class SystemUtil {
     }
 
     /**
+     * Get IP address from first non-localhost interface
+     *
+     * @param useIPv4 true=return ipv4, false=return ipv6
+     * @return address or empty string
+     */
+    public static String getIPAddress(boolean useIPv4) {
+        try {
+            for (NetworkInterface networkInterface : Collections.list(NetworkInterface.getNetworkInterfaces())) {
+                for (InetAddress inetAddress : Collections.list(networkInterface.getInetAddresses())) {
+                    if (!inetAddress.isLoopbackAddress()) {
+                        String hostAddress = inetAddress.getHostAddress();
+                        boolean isIPv4 = hostAddress.indexOf(':') < 0;
+                        if (useIPv4 && isIPv4) {
+                            return hostAddress;
+                        } else if (!useIPv4 && !isIPv4) {
+                            int suffix = hostAddress.indexOf('%');// drop ip6 zone suffix
+                            return suffix < 0 ? hostAddress.toUpperCase() : hostAddress.substring(0, suffix).toUpperCase();
+                        }
+                    }
+                }
+            }
+        } catch (Exception ignored) {
+        }
+        return "";
+    }
+
+    /**
+     * Returns MAC address of the given interface name.
+     *
+     * @param interfaceName eth0, wlan0 or NULL=use first interface
+     * @return mac address or empty string
+     */
+    public static String getMACAddress(String interfaceName) {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                if (interfaceName != null) {
+                    if (!intf.getName().equalsIgnoreCase(interfaceName)) continue;
+                }
+                byte[] mac = intf.getHardwareAddress();
+                if (mac == null) return "";
+                StringBuilder buf = new StringBuilder();
+                for (int idx = 0; idx < mac.length; idx++)
+                    buf.append(String.format("%02X:", mac[idx]));
+                if (buf.length() > 0) buf.deleteCharAt(buf.length() - 1);
+                return buf.toString();
+            }
+        } catch (Exception ignored) {
+        }
+        return "";
+    }
+
+    /**
+     * @deprecated ipV6
+     */
+    @SuppressWarnings("deprecation")
+    public static String getDNS(Context context) {
+        //获取wifi服务
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        //判断wifi是否开启
+        if (wifiManager.isWifiEnabled()) {
+            DhcpInfo dhcpInfo = wifiManager.getDhcpInfo();
+            return "dns1:" + FormatString(dhcpInfo.dns1) + " dns2:" + FormatString(dhcpInfo.dns2);
+        }
+        return null;
+    }
+
+    public static String getDNS() {
+        try {
+            Class<?> SystemProperties = Class.forName("android.os.SystemProperties");
+            Method method = SystemProperties.getMethod("get", new Class[]{String.class});
+            ArrayList<String> servers = new ArrayList<String>();
+            for (String name : new String[]{"net.dns1", "net.dns2", "net.dns3", "net.dns4",}) {
+                String value = (String) method.invoke(null, name);
+                if (value != null && !"".equals(value) && !servers.contains(value))
+                    servers.add(value);
+            }
+            return servers.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String FormatString(int value) {
+        String strValue = "";
+        byte[] ary = intToByteArray(value);
+        for (int i = ary.length - 1; i >= 0; i--) {
+            strValue += (ary[i] & 0xFF);
+            if (i > 0) {
+                strValue += ".";
+            }
+        }
+        return strValue;
+    }
+
+    public static byte[] intToByteArray(int value) {
+        byte[] b = new byte[4];
+        for (int i = 0; i < 4; i++) {
+            int offset = (b.length - 1 - i) * 8;
+            b[i] = (byte) ((value >>> offset) & 0xFF);
+        }
+        return b;
+    }
+
+    /**
      * 获取应用信息
      *
      * @return
@@ -83,7 +192,7 @@ public class SystemUtil {
     public static ApplicationInfo getAppInfo(Context context) {
         ApplicationInfo applicationInfo = null;
         try {
-            applicationInfo = getPackgeManager(context).getApplicationInfo(context.getPackageName(), 0);
+            applicationInfo = getPackageManager(context).getApplicationInfo(context.getPackageName(), 0);
         } catch (NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -114,7 +223,7 @@ public class SystemUtil {
         ApplicationInfo info;
         String value = null;
         try {
-            info = getPackgeManager(context).getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
+            info = getPackageManager(context).getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
             value = info.metaData.getString(key);
         } catch (Exception e) {
             e.printStackTrace();

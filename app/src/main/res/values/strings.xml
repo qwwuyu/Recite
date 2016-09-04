@@ -1,9 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="toast_double_click_exit">再按一次退出程序!</string>
-
     <string name="app_name">Recite</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <!-- contentDescription -->
+    <string name="ActionButtonOverflow">ActionButtonOverflow</string>
 
+    <!-- 基础文字 -->
+    <string name="back">返回</string>
+    <string name="save">保存</string>
+    <string name="edit">编辑</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="add">添加</string>
+    <string name="del">删除</string>
+    <string name="agree">同意</string>
+    <string name="refuse">拒绝</string>
+    <string name="space">\u00A0</string>
+    <!-- toast -->
+    <string name="toast_click_exit">再按一次退出程序</string>
+    <string name="toast_time_out">请求超时</string>
+    <string name="toast_hand_error">操作失败</string>
+    <!-- 网络请求相关 -->
+    <string name="request_error">请求失败</string>
+    <string name="request_connect_error">连接异常</string>
+    <string name="request_time_out">连接超时</string>
+    <string name="request_data_error">数据异常</string>
+    <!-- process -->
+    <string name="process_loading">加载中&#8230;</string>
+    <string name="process_hand">处理中&#8230;</string>
+    <!-- dialog -->
+    <string name="dialog_title_hint">温馨提示</string>
+    <string name="dialog_title_offline">下线通知</string>
+    <string name="dialog_offline_reLogin">重新登录</string>
+    <string name="dialog_offline_exit">退出</string>
+    <!-- notify -->
+    <string name="notify_door_open">门关</string>
+    <!-- hint -->
+    <string name="hint_enter_key_word">请输入关键字</string>
+    <!-- ================ 分模块_控件名_功能 ================ -->
+    <string name="search">搜索</string>
+    <string name="collect">我的收藏</string>
+    <string name="orderWords">正序单词列表</string>
+    <string name="indexWords">乱序单词列表</string>
+    <string name="loading">正在加载&#8230;</string>
+
+    <string-array name="mainTexts">
+        <item>背诵</item>
+        <item>音标</item>
+        <item>设置</item>
+    </string-array>
+
+    <string name="splash_txt_use">使\u00A0\u00A0用</string>
+    <string name="splash_txt_version">版本:%1$d\n版本名称:V%2$s</string>
+
+    <string name="word_txt_day">第%1$d天</string>
+
+    <string name="mine_txt_num">%1$d个</string>
+    <string name="mine_num4day">每天学习的单词量</string>
+    <string name="mine_appNum_hint">当前版本</string>
+    <string name="mine_appNum">V%s</string>
+
+    <string name="title_collectWords">我的收藏</string>
+    <string name="collectWords_menu_time">收藏时间</string>
+    <string name="collectWords_menu_letter">字母顺序</string>
+    <string name="collectWords_menu_del">清空收藏</string>
+    <string name="collectWords_delALl">你确定要清空收藏列表吗?</string>
+    <string name="collectWords_error">你没有任何收藏</string>
+
+    <string name="title_orderWordList">正序单词列表</string>
+    <string name="title_indexWordList">乱序单词列表</string>
+
+    <string name="searchWord_error">没有搜索到内容</string>
 </resources>

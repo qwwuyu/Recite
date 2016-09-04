@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/whiteFC"
+              android:orientation="vertical">
+
+    <View
+        style="@style/view_line"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/def_item_height">
+
+        <TextView
+            android:id="@+id/pickerDialog_ok"
+            style="@style/def_tv"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/select_def_item_black"
+            android:paddingLeft="@dimen/def_btn_w_padding"
+            android:paddingRight="@dimen/def_btn_w_padding"
+            android:text="@string/ok"
+            android:textSize="@dimen/fontLarge"/>
+
+    </RelativeLayout>
+
+    <View
+        style="@style/view_line"/>
+
+    <com.bigkoo.pickerview.lib.WheelView
+        android:id="@+id/pickerDialog_picker"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"/>
+</LinearLayout>

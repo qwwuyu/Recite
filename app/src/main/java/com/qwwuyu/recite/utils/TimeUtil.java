@@ -1,8 +1,5 @@
 package com.qwwuyu.recite.utils;
 
-/**
- * 计算时间的Log工具
- */
 public class TimeUtil {
     private static long beginTime;
     private static long lastTime;

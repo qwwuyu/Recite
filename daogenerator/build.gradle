@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'org.freemarker:freemarker:2.3.23'
+}
+//修改结构,简单化
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+        resources {
+            srcDir 'src-template'
+        }
+    }
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+//设置这个才能找到dao.ftl
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+//设置输出格式,否则乱码
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
