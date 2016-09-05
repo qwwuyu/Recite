@@ -112,9 +112,7 @@ public class SliderPanel extends FrameLayout {
             if (slidr != null && slidr.isRelease()) {
                 slidr = null;
             }
-            LogUtil.i("onViewPositionChanged:" + id);
             if (slidr != null) {
-                LogUtil.i("offsetLeftAndRight:" + slidr.getPanel().getId());
                 View moveView = slidr.getPanel();
                 ViewCompat.offsetLeftAndRight(moveView, (changedView.getLeft() - mScreenWidth) / 5 - moveView.getLeft());
             }

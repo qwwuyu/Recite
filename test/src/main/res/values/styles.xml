@@ -9,7 +9,32 @@
     </style>
     <!-- 常用Act -->
     <style name="AppTheme.DefActTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/WindowDefAnim</item>
+    </style>
+
+    <!-- 透明Act -->
+    <style name="AppTheme.TransActTheme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/WindowTransAnim</item>
+    </style>
+
+    <style name="WindowTransAnim" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/enter_enter</item>
+        <item name="android:windowExitAnimation">@anim/exit_exit</item>
+        <item name="android:wallpaperCloseEnterAnimation">@null</item>
+        <item name="android:wallpaperCloseExitAnimation">@null</item>
+    </style>
+
+    <style name="WindowDefAnim" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/enter_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/enter_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/exit_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/exit_exit</item>
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:wallpaperCloseEnterAnimation">@null</item>
+        <item name="android:wallpaperCloseExitAnimation">@null</item>
     </style>
 </resources>
