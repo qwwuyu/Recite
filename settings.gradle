@@ -1,1 +1,1 @@
-include ':app', ':daogenerator', ':slidrLibrary', ':test'
+include ':app', ':daogenerator'

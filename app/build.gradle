@@ -3,13 +3,13 @@ apply plugin: 'android-apt' //编译时注解工具
 apply plugin: 'org.greenrobot.greendao' //数据库
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.qwwuyu.recite"
-        minSdkVersion 15
-        targetSdkVersion 22
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         int major = 1, minor = 0, maintenance = 1
         versionCode major * 1000 + minor * 100 + maintenance
         versionName major + "." + minor + "." + maintenance
@@ -39,21 +39,14 @@ android {
     }
 }
 
-ext {
-    supportVersion = '23.2.1'
-    jakewhartonVersion = '8.2.1'
-    greendaoVersion = '3.1.0'
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:${supportVersion}"
-    compile "com.android.support:recyclerview-v7:${supportVersion}"// RecyclerView wrap_content work for 23.2.1
-    compile "com.android.support:cardview-v7:${supportVersion}"
-    compile "com.android.support:design:${supportVersion}"
-    compile "com.jakewharton:butterknife:${jakewhartonVersion}"// butterknife findView bindClick
-    apt "com.jakewharton:butterknife-compiler:${jakewhartonVersion}"// butterknife findView bindClick
-    compile "org.greenrobot:greendao:${greendaoVersion}"// greenDAO 数据库框架
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    compile "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"// RecyclerView wrap_content work for 23.2.1
+    compile "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"
+    compile "com.android.support:design:${rootProject.ext.supportVersion}"
+    compile "com.jakewharton:butterknife:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
+    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
+    compile "org.greenrobot:greendao:${rootProject.ext.greendaoVersion}"// greenDAO 数据库框架
     compile 'com.bigkoo:pickerview:2.0.8'//PickerView IOS时间轮
-    compile project(':slidrLibrary')//侧滑退出控件
 }
