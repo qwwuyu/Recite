@@ -1,10 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt' //编译时注解工具
 apply plugin: 'org.greenrobot.greendao' //数据库
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.qwwuyu.recite"
@@ -46,7 +44,7 @@ dependencies {
     compile "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"
     compile "com.android.support:design:${rootProject.ext.supportVersion}"
     compile "com.jakewharton:butterknife:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
-    apt "com.jakewharton:butterknife-compiler:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
     compile "org.greenrobot:greendao:${rootProject.ext.greendaoVersion}"// greenDAO 数据库框架
     compile 'com.bigkoo:pickerview:2.0.8'//PickerView IOS时间轮
 }
