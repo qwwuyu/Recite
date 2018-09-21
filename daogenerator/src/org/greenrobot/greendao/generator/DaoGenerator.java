@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import test.WordGenerator;
 
 /**
  * Once you have your model created, use this class to generate entities and DAOs.
@@ -59,7 +60,10 @@ public class DaoGenerator {
         patternKeepMethods = compilePattern("METHODS");
 
         Configuration config = new Configuration(Configuration.VERSION_2_3_23);
-        config.setClassForTemplateLoading(this.getClass(), "/");
+//        config.setClassForTemplateLoading(this.getClass(), "/");
+        String classPath = WordGenerator.class.getResource("").toString();
+        String path = classPath.substring(classPath.lastIndexOf(':') + 1, classPath.lastIndexOf("build")) + "src-template";
+        config.setDirectoryForTemplateLoading(new File(path));
 
         templateDao = config.getTemplate("dao.ftl");
         templateDaoMaster = config.getTemplate("dao-master.ftl");
