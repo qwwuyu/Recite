@@ -24,7 +24,7 @@ ext {
     targetSdkVersion = 22
     compileSdkVersion = 27
     // App dependencies
-    supportVersion = '27.0.2'
+    supportVersion = '27.1.1'
     jakewhartonVersion = '8.2.1'
     greendaoVersion = '3.1.0'
 }
