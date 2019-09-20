@@ -5,16 +5,16 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
 /**
  * Created by Mr.Jude on 2015/8/26.
  */
-public class RelateSlider implements SwipeBackLayout.SwipeListener {
+class RelateSlider implements SwipeBackLayout.SwipeListener {
     public SwipeBackPage curPage;
     private static final int DEFAULT_OFFSET = 40;
-    private int offset = 500;
+    private float offset = 0.25f;
 
     public RelateSlider(SwipeBackPage curActivity) {
         this.curPage = curActivity;
     }
 
-    public void setOffset(int offset) {
+    public void setOffset(float offset) {
         this.offset = offset;
     }
 
@@ -27,10 +27,7 @@ public class RelateSlider implements SwipeBackLayout.SwipeListener {
     public void onScrollStateChange(int state, float percent) {
         SwipeBackPage page = SwipeBackHelper.getPrePage(curPage);
         if (page != null) {
-            page.getSwipeBackLayout().setX(Math.min(-offset * Math.max(1 - percent, 0) + DEFAULT_OFFSET, 0));
-            if (percent == 0) {
-                page.getSwipeBackLayout().setX(0);
-            }
+            page.getSwipeBackLayout().setPercentOffset(percent, offset);
         }
     }
 
@@ -43,7 +40,7 @@ public class RelateSlider implements SwipeBackLayout.SwipeListener {
     public void onScrollOverThreshold() {
         SwipeBackPage page = SwipeBackHelper.getPrePage(curPage);
         if (page != null) {
-            page.getSwipeBackLayout().setX(0);
+            page.getSwipeBackLayout().setPercentOffset(0, offset);
         }
     }
 }

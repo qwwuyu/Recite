@@ -22,23 +22,19 @@
 
     <!-- ======================= Activity ======================= -->
     <!-- 常用Act -->
-    <style name="AppTheme.DefActTheme">
+    <style name="AppTheme.SlideActTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/BaseSlideAnimation</item>
     </style>
     <!-- MainAct -->
     <style name="AppTheme.MainActTheme">
+        <item name="android:windowIsTranslucent">false</item>
     </style>
     <!-- LauncherStyle -->
     <style name="AppTheme.LauncherStyle">
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowAnimationStyle">@style/LauncherAnimation</item>
-    </style>
-
-    <style name="LauncherAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/anim_no</item>
-        <item name="android:windowExitAnimation">@anim/system_close_exit</item>
-        <item name="android:taskToBackEnterAnimation">@null</item>
-        <item name="android:taskToBackExitAnimation">@null</item>
     </style>
     <!-- Search -->
     <style name="AppTheme.SearchTheme">
@@ -52,6 +48,13 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/TransStyleAnimation</item>
+    </style>
+    <!-- anim -->
+    <style name="LauncherAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/anim_no</item>
+        <item name="android:windowExitAnimation">@anim/system_close_exit</item>
+        <item name="android:taskToBackEnterAnimation">@null</item>
+        <item name="android:taskToBackExitAnimation">@null</item>
     </style>
 
     <style name="TransStyleAnimation" parent="@android:style/Animation.Activity">

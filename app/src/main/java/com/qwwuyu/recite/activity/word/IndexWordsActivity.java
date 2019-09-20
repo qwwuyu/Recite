@@ -33,6 +33,11 @@ public class IndexWordsActivity extends BaseActivity implements CommAdapter.Adap
     RecyclerView rv;
 
     @Override
+    protected boolean enableSlider() {
+        return true;
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.a_letter_words;
     }

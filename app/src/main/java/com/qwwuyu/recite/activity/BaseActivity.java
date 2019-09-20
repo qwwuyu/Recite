@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.MenuRes;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
+import me.imid.swipebacklayout.lib.helper.SwipeBackHelper;
 
 /**
  * 所有Activity的基类
@@ -46,16 +49,80 @@ public abstract class BaseActivity extends AppCompatActivity {
     /** ToolBar */
     protected Toolbar toolBar;
 
+    private boolean slider;
+
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         BaseActivity.clazzName = c.getName();
+        slider = enableSlider();
         setContentView(getContentViewId());
+        if (slider) {
+            SwipeBackHelper.onCreate(this)
+                    .setSwipeSensitivity(0.5f)
+                    .setSwipeBackEnable(true)
+                    .setSwipeRelateEnable(true);
+        }
         ButterKnife.bind(this);
-        toolBar = (Toolbar) findViewById(R.id.view_toolBar);
+        toolBar = findViewById(R.id.view_toolBar);
         tintManager = SystemBarSetUtil.setTranslucentStatus(this, R.color.colorPrimaryDark);
         init();
         EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPostCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onPostCreate(savedInstanceState, persistentState);
+        if (slider) {
+            SwipeBackHelper.onPostCreate(this);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BaseActivity.clazzName = c.getName();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (toolBar != null && toolBar.getMenu() != null) {
+            toolBar.getMenu().close();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (slider) {
+            SwipeBackHelper.onDestroy(this);
+        }
+        EventBus.getDefault().unregister(this);
+        LogUtil.i(c.getSimpleName() + "==>onDestroy");
+    }
+
+    /** EventBus通信方法 */
+    public final void onEventMainThread(EventBean event) {
+        if (FinalConfig.EVENT_ACT_FINISH == event.getWhat()) {
+            finishNoAnim();
+        } else if (FinalConfig.EVENT_TEST == event.getWhat()) {
+            LogUtil.i(c.getName());
+        }
+        onMainEvent(event);
+    }
+
+    protected void onMainEvent(EventBean event) {
+    }
+
+    /** @return 布局xml id */
+    protected abstract int getContentViewId();
+
+    /** 初始化数据,设置数据 */
+    protected abstract void init();
+
+    protected boolean enableSlider() {
+        return false;
     }
 
     protected final void setBackBtn() {
@@ -86,49 +153,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        BaseActivity.clazzName = c.getName();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (toolBar != null && toolBar.getMenu() != null) {
-            toolBar.getMenu().close();
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-        LogUtil.i(c.getSimpleName() + "==>onDestroy");
-    }
-
-    /** EventBus通信方法 */
-    public final void onEventMainThread(EventBean event) {
-        if (FinalConfig.EVENT_ACT_FINISH == event.getWhat()) {
-            finishNoAnim();
-        } else if (FinalConfig.EVENT_TEST == event.getWhat()) {
-            LogUtil.i(c.getName());
-        }
-        onMainEvent(event);
-    }
-
-    protected void onMainEvent(EventBean event) {
-    }
-
-    /** @return 布局xml id */
-    protected abstract int getContentViewId();
-
-    /** 初始化数据,设置数据 */
-    protected abstract void init();
-
-    @Override
     public void finish() {
         finishNoAnim();
-        //TODO 添加动画
         overridePendingTransition(R.anim.exit_enter, R.anim.exit_exit);
     }
 

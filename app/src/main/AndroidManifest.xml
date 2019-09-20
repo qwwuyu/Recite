@@ -1,6 +1,6 @@
 <manifest
-    package="com.qwwuyu.recite"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qwwuyu.recite">
     <!--&lt;!&ndash; 联网权限 &ndash;&gt;-->
     <!--<uses-permission android:name="android.permission.INTERNET"/>-->
     <!--&lt;!&ndash; 更改系统设置 &ndash;&gt;-->
@@ -16,7 +16,7 @@
 
     <application
         android:name=".config.TApplication"
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
@@ -43,19 +43,19 @@
             android:name=".activity.word.IndexWordsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DefActTheme"/>
+            android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 收藏单词列表 -->
         <activity
             android:name=".activity.word.CollectWordsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DefActTheme"/>
+            android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 正序单词列表 -->
         <activity
             android:name=".activity.word.OrderWordsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DefActTheme"/>
+            android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 搜索单词 -->
         <activity
             android:name=".activity.word.SearchWordActivity"
@@ -67,7 +67,7 @@
             android:name=".activity.word.WordDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.DefActTheme"/>
+            android:theme="@style/AppTheme.SlideActTheme"/>
 
     </application>
 </manifest>

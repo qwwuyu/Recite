@@ -46,8 +46,8 @@ public class SwipeBackPage {
         return this;
     }
 
-    public SwipeBackPage setSwipeRelateOffset(int offset) {
-        slider.setOffset(offset);
+    public SwipeBackPage setSwipeRelateOffset(float offset) {
+        slider.setOffset(Math.min(Math.max(0, offset), 1));
         return this;
     }
 
@@ -119,5 +119,4 @@ public class SwipeBackPage {
     public void scrollToFinishActivity() {
         mSwipeBackLayout.scrollToFinishActivity();
     }
-
 }

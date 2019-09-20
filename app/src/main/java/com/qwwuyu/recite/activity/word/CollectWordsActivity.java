@@ -49,6 +49,11 @@ public class CollectWordsActivity extends BaseActivity implements CommAdapter.Ad
     RecyclerView rv;
 
     @Override
+    protected boolean enableSlider() {
+        return true;
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.a_collect_words;
     }

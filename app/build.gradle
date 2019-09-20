@@ -39,6 +39,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':swipeback')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
     implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"// RecyclerView wrap_content work for 23.2.1
     implementation "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"

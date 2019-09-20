@@ -20,6 +20,11 @@ public class WordDetailActivity extends BaseActivity {
     private Word word;
 
     @Override
+    protected boolean enableSlider() {
+        return true;
+    }
+
+    @Override
     protected int getContentViewId() {
         return R.layout.a_word_detail;
     }

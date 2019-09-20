@@ -22,6 +22,7 @@ import com.qwwuyu.recite.utils.IntentUtil;
 import com.qwwuyu.recite.utils.SortUtil;
 
 import butterknife.BindView;
+import me.imid.swipebacklayout.lib.helper.SwipeBackHelper;
 
 /**
  * 主界面
@@ -33,6 +34,11 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
     /** 内容ViewPager */
     @BindView(R.id.main_viewPager)
     ViewPager viewPager;
+
+    @Override
+    protected boolean enableSlider() {
+        return true;
+    }
 
     @Override
     protected int getContentViewId() {
@@ -63,6 +69,9 @@ public class MainActivity extends BaseActivity implements Toolbar.OnMenuItemClic
             public void onPageScrollStateChanged(int state) {
             }
         });
+        SwipeBackHelper.getCurrentPage(this)
+                .setSwipeBackEnable(false)
+                .setDisallowInterceptTouchEvent(true);
     }
 
     @Override
