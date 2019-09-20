@@ -42,19 +42,16 @@
         <activity
             android:name=".activity.word.IndexWordsActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 收藏单词列表 -->
         <activity
             android:name=".activity.word.CollectWordsActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 正序单词列表 -->
         <activity
             android:name=".activity.word.OrderWordsActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 搜索单词 -->
         <activity
@@ -66,7 +63,6 @@
         <activity
             android:name=".activity.word.WordDetailActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.SlideActTheme"/>
 
     </application>
