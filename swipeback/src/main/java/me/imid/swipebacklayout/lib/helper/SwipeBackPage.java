@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.ViewGroup;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.SwipeListener;
 
 /**
  * Created by Mr.Jude on 2015/8/3.
@@ -102,12 +103,12 @@ public class SwipeBackPage {
         return this;
     }
 
-    public SwipeBackPage addListener(SwipeBackLayout.SwipeListener listener) {
+    public SwipeBackPage addListener(SwipeListener listener) {
         mSwipeBackLayout.addSwipeListener(listener);
         return this;
     }
 
-    public SwipeBackPage removeListener(SwipeBackLayout.SwipeListener listener) {
+    public SwipeBackPage removeListener(SwipeListener listener) {
         mSwipeBackLayout.removeSwipeListener(listener);
         return this;
     }

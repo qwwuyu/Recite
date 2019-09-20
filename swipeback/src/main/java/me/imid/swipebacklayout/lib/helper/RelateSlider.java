@@ -1,11 +1,11 @@
 package me.imid.swipebacklayout.lib.helper;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.SwipeListener;
 
 /**
  * Created by Mr.Jude on 2015/8/26.
  */
-class RelateSlider implements SwipeBackLayout.SwipeListener {
+class RelateSlider implements SwipeListener {
     public SwipeBackPage curPage;
     private static final int DEFAULT_OFFSET = 40;
     private float offset = 0.25f;
@@ -24,7 +24,7 @@ class RelateSlider implements SwipeBackLayout.SwipeListener {
     }
 
     @Override
-    public void onScrollStateChange(int state, float percent) {
+    public void onScrollStateChange(float percent) {
         SwipeBackPage page = SwipeBackHelper.getPrePage(curPage);
         if (page != null) {
             page.getSwipeBackLayout().setPercentOffset(percent, offset);
@@ -32,7 +32,7 @@ class RelateSlider implements SwipeBackLayout.SwipeListener {
     }
 
     @Override
-    public void onEdgeTouch(int edgeFlag) {
+    public void onEdgeTouch() {
 
     }
 

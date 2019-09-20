@@ -158,13 +158,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.exit_enter, R.anim.exit_exit);
     }
 
-    public void finishNoAnim() {
+    protected void finishNoAnim() {
         isFinish = true;
         closeKeyboard();
         super.finish();
     }
 
-    public void closeKeyboard() {
+    protected void closeKeyboard() {
         try {
             if (getCurrentFocus() != null && getCurrentFocus().getApplicationWindowToken() != null) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
