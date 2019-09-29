@@ -1,4 +1,4 @@
-package me.imid.swipebacklayout.lib.helper;
+package swipeback.helper;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.ViewGroup;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.SwipeListener;
+import swipeback.SwipeBackLayout;
+import swipeback.SwipeListener;
 
 /**
  * Created by Mr.Jude on 2015/8/3.

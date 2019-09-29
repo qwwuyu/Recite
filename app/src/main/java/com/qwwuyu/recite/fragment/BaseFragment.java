@@ -77,7 +77,7 @@ public abstract class BaseFragment extends Fragment {
         view_content.setAnimation(AnimationUtils.loadAnimation(context, R.anim.loading_fade_in));
         view_content.setVisibility(View.VISIBLE);
         ButterKnife.bind(this, view_Parent);
-        LoadingView view_loading = (LoadingView) view_Parent.findViewById(R.id.base_view_loading);
+        LoadingView view_loading = view_Parent.findViewById(R.id.base_view_loading);
         if (view_loading != null) {
             view_loading.remove(true);
         }

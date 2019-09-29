@@ -1,4 +1,4 @@
-package me.imid.swipebacklayout.lib;
+package swipeback;
 
 public interface SwipeListener {
     /**

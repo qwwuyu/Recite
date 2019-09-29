@@ -22,7 +22,7 @@ import com.qwwuyu.recite.utils.IntentUtil;
 import com.qwwuyu.recite.utils.SortUtil;
 
 import butterknife.BindView;
-import me.imid.swipebacklayout.lib.helper.SwipeBackHelper;
+import swipeback.helper.SwipeBackHelper;
 
 /**
  * 主界面

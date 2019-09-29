@@ -37,7 +37,7 @@ public class WordDetailActivity extends BaseActivity {
             word = TApplication.indexWords.get(wordCopy.getIndex());
             wordView.setWord(word);
         } else {
-            finishNoAnim();
+            finish();
         }
     }
 }

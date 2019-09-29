@@ -28,7 +28,8 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
-import me.imid.swipebacklayout.lib.helper.SwipeBackHelper;
+import swipeback.SwipeBackUtils;
+import swipeback.helper.SwipeBackHelper;
 
 /**
  * 所有Activity的基类
@@ -42,8 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Class<? extends Activity> c = this.getClass();
     /** 最前面界面类的名称 */
     private static String clazzName;
-    /** 判断界面是否finish */
-    public boolean isFinish = false;
     /** 沉浸式 */
     protected SystemBarTintManager tintManager;
     /** ToolBar */
@@ -58,8 +57,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         slider = enableSlider();
         setContentView(getContentViewId());
         if (slider) {
+            SwipeBackUtils.convertActivityFromTranslucent(this);
             SwipeBackHelper.onCreate(this)
                     .setSwipeSensitivity(0.5f)
+                    .setSwipeEdgePercent(0.1f)
                     .setSwipeBackEnable(true)
                     .setSwipeRelateEnable(true);
         }
@@ -105,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /** EventBus通信方法 */
     public final void onEventMainThread(EventBean event) {
         if (FinalConfig.EVENT_ACT_FINISH == event.getWhat()) {
-            finishNoAnim();
+            finish();
         } else if (FinalConfig.EVENT_TEST == event.getWhat()) {
             LogUtil.i(c.getName());
         }
@@ -154,14 +155,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public void finish() {
-        finishNoAnim();
+        closeKeyboard();
+        super.finish();
         overridePendingTransition(R.anim.exit_enter, R.anim.exit_exit);
     }
 
     protected void finishNoAnim() {
-        isFinish = true;
         closeKeyboard();
         super.finish();
+        overridePendingTransition(R.anim.anim_no, R.anim.anim_no);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     protected void closeKeyboard() {

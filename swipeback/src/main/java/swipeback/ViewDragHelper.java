@@ -14,19 +14,16 @@
  * limitations under the License.
  */
 
-package me.imid.swipebacklayout.lib;
+package swipeback;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ScrollerCompat;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
+import android.widget.OverScroller;
 
 import java.util.Arrays;
 
@@ -65,7 +62,7 @@ public class ViewDragHelper {
     /**
      * Edge flag indicating that the left edge should be affected.
      */
-    public static final int EDGE_LEFT = 1 << 0;
+    public static final int EDGE_LEFT = 1;
 
     /**
      * Edge flag indicating that the right edge should be affected.
@@ -90,7 +87,7 @@ public class ViewDragHelper {
     /**
      * Indicates that a check should occur along the horizontal axis
      */
-    public static final int DIRECTION_HORIZONTAL = 1 << 0;
+    public static final int DIRECTION_HORIZONTAL = 1;
 
     /**
      * Indicates that a check should occur along the vertical axis
@@ -143,7 +140,7 @@ public class ViewDragHelper {
 
     private int mTrackingEdges;
 
-    private ScrollerCompat mScroller;
+    private OverScroller mScroller;
 
     private final Callback mCallback;
 
@@ -343,6 +340,10 @@ public class ViewDragHelper {
         public int clampViewPositionVertical(View child, int top, int dy) {
             return 0;
         }
+
+        public boolean isPageTranslucent() {
+            return true;
+        }
     }
 
     /**
@@ -411,7 +412,7 @@ public class ViewDragHelper {
         mTouchSlop = vc.getScaledTouchSlop();
         mMaxVelocity = vc.getScaledMaximumFlingVelocity();
         mMinVelocity = vc.getScaledMinimumFlingVelocity();
-        mScroller = ScrollerCompat.create(context, sInterpolator);
+        mScroller = new OverScroller(context, sInterpolator);
     }
 
     /**
@@ -624,8 +625,8 @@ public class ViewDragHelper {
         }
 
         return forceSettleCapturedViewAt(finalLeft, finalTop,
-                (int) VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
-                (int) VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId));
+                (int) mVelocityTracker.getXVelocity(mActivePointerId),
+                (int) mVelocityTracker.getYVelocity(mActivePointerId));
     }
 
     /**
@@ -758,8 +759,8 @@ public class ViewDragHelper {
         }
 
         mScroller.fling(mCapturedView.getLeft(), mCapturedView.getTop(),
-                (int) VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
-                (int) VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId),
+                (int) mVelocityTracker.getXVelocity(mActivePointerId),
+                (int) mVelocityTracker.getYVelocity(mActivePointerId),
                 minLeft, maxLeft, minTop, maxTop);
 
         setDragState(STATE_SETTLING);
@@ -899,11 +900,11 @@ public class ViewDragHelper {
     }
 
     private void saveLastMotion(MotionEvent ev) {
-        final int pointerCount = MotionEventCompat.getPointerCount(ev);
+        final int pointerCount = ev.getPointerCount();
         for (int i = 0; i < pointerCount; i++) {
-            final int pointerId = MotionEventCompat.getPointerId(ev, i);
-            final float x = MotionEventCompat.getX(ev, i);
-            final float y = MotionEventCompat.getY(ev, i);
+            final int pointerId = ev.getPointerId(i);
+            final float x = ev.getX(i);
+            final float y = ev.getY(i);
             mLastMotionX[pointerId] = x;
             mLastMotionY[pointerId] = y;
         }
@@ -976,8 +977,7 @@ public class ViewDragHelper {
             final int scrollX = v.getScrollX();
             final int scrollY = v.getScrollY();
             final int count = group.getChildCount();
-            // Count backwards - let topmost views consume scroll distance
-            // first.
+            // Count backwards - let topmost views consume scroll distance first.
             for (int i = count - 1; i >= 0; i--) {
                 // TODO: Add versioned support here for transformed views.
                 // This will not work for transformed views in Honeycomb+
@@ -993,9 +993,7 @@ public class ViewDragHelper {
             }
         }
 
-        return checkV
-                && (ViewCompat.canScrollHorizontally(v, -dx) || ViewCompat.canScrollVertically(v,
-                -dy));
+        return checkV && (v.canScrollHorizontally(-dx) || v.canScrollVertically(-dy));
     }
 
     /**
@@ -1007,8 +1005,8 @@ public class ViewDragHelper {
      * onInterceptTouchEvent
      */
     public boolean shouldInterceptTouchEvent(MotionEvent ev) {
-        final int action = MotionEventCompat.getActionMasked(ev);
-        final int actionIndex = MotionEventCompat.getActionIndex(ev);
+        final int action = ev.getActionMasked();
+        final int actionIndex = ev.getActionIndex();
 
         if (action == MotionEvent.ACTION_DOWN) {
             // Reset things for a new event stream, just in case we didn't get
@@ -1020,7 +1018,7 @@ public class ViewDragHelper {
             case MotionEvent.ACTION_DOWN: {
                 final float x = ev.getX();
                 final float y = ev.getY();
-                final int pointerId = MotionEventCompat.getPointerId(ev, 0);
+                final int pointerId = ev.getPointerId(0);
                 saveInitialMotion(x, y, pointerId);
 
                 final View toCapture = findTopChildUnder((int) x, (int) y);
@@ -1039,10 +1037,10 @@ public class ViewDragHelper {
                 }
                 break;
             }
-            case MotionEventCompat.ACTION_POINTER_DOWN: {
-                final int pointerId = MotionEventCompat.getPointerId(ev, actionIndex);
-                final float x = MotionEventCompat.getX(ev, actionIndex);
-                final float y = MotionEventCompat.getY(ev, actionIndex);
+            case MotionEvent.ACTION_POINTER_DOWN: {
+                final int pointerId = ev.getPointerId(actionIndex);
+                final float x = ev.getX(actionIndex);
+                final float y = ev.getY(actionIndex);
                 saveInitialMotion(x, y, pointerId);
                 break;
             }
@@ -1053,10 +1051,10 @@ public class ViewDragHelper {
                     }
                     if (mDragState == STATE_DRAGGING)
                         mVelocityTracker.addMovement(ev);
-                    final int i = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+                    final int i = ev.findPointerIndex(mActivePointerId);
 
-                    final float x = MotionEventCompat.getX(ev, i);
-                    final float y = MotionEventCompat.getY(ev, i);
+                    final float x = ev.getX(i);
+                    final float y = ev.getY(i);
                     final float dx = x - mInitialMotionX[mActivePointerId];
                     final float dy = y - mInitialMotionY[mActivePointerId];
 
@@ -1073,8 +1071,8 @@ public class ViewDragHelper {
                 }
                 break;
             }
-            case MotionEventCompat.ACTION_POINTER_UP: {
-                final int pointerId = MotionEventCompat.getPointerId(ev, actionIndex);
+            case MotionEvent.ACTION_POINTER_UP: {
+                final int pointerId = ev.getPointerId(actionIndex);
                 clearMotionHistory(pointerId);
                 break;
             }
@@ -1103,8 +1101,8 @@ public class ViewDragHelper {
      */
     public void processTouchEvent(MotionEvent ev) {
 
-        final int action = MotionEventCompat.getActionMasked(ev);
-        final int actionIndex = MotionEventCompat.getActionIndex(ev);
+        final int action = ev.getActionMasked();
+        final int actionIndex = ev.getActionIndex();
 
         if (action == MotionEvent.ACTION_DOWN) {
             // Reset things for a new event stream, just in case we didn't get
@@ -1117,7 +1115,7 @@ public class ViewDragHelper {
             case MotionEvent.ACTION_DOWN: {
                 final float x = ev.getX();
                 final float y = ev.getY();
-                final int pointerId = MotionEventCompat.getPointerId(ev, 0);
+                final int pointerId = ev.getPointerId(0);
                 saveInitialMotion(x, y, pointerId);
 
                 final View toCapture = findTopChildUnder((int) x, (int) y);
@@ -1137,10 +1135,10 @@ public class ViewDragHelper {
                 break;
             }
 
-            case MotionEventCompat.ACTION_POINTER_DOWN: {
-                final int pointerId = MotionEventCompat.getPointerId(ev, actionIndex);
-                final float x = MotionEventCompat.getX(ev, actionIndex);
-                final float y = MotionEventCompat.getY(ev, actionIndex);
+            case MotionEvent.ACTION_POINTER_DOWN: {
+                final int pointerId = ev.getPointerId(actionIndex);
+                final float x = ev.getX(actionIndex);
+                final float y = ev.getY(actionIndex);
 
                 saveInitialMotion(x, y, pointerId);
                 break;
@@ -1149,9 +1147,9 @@ public class ViewDragHelper {
             case MotionEvent.ACTION_MOVE: {
                 if (mDragState == STATE_JUDGING) {
 
-                    final int i = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
-                    final float x = MotionEventCompat.getX(ev, i);
-                    final float y = MotionEventCompat.getY(ev, i);
+                    final int i = ev.findPointerIndex(mActivePointerId);
+                    final float x = ev.getX(i);
+                    final float y = ev.getY(i);
                     final float dx = x - mInitialMotionX[mActivePointerId];
                     final float dy = y - mInitialMotionY[mActivePointerId];
 
@@ -1178,12 +1176,12 @@ public class ViewDragHelper {
                     if (mDragState == STATE_DRAGGING)
                         mVelocityTracker.addMovement(ev);
 
-                    final int index = MotionEventCompat.findPointerIndex(ev, mActivePointerId);
+                    final int index = ev.findPointerIndex(mActivePointerId);
                     //如果触发手势已经结束，不做处理。等待所有手势结束再关闭
                     if (index == -1) break;
 
-                    final float x = MotionEventCompat.getX(ev, index);
-                    final float y = MotionEventCompat.getY(ev, index);
+                    final float x = ev.getX(index);
+                    final float y = ev.getY(index);
                     final int idx = (int) (x - mLastMotionX[mActivePointerId]);
                     final int idy = (int) (y - mLastMotionY[mActivePointerId]);
                     dragTo(mCapturedView.getLeft() + idx, mCapturedView.getTop() + idy, idx, idy);
@@ -1192,8 +1190,8 @@ public class ViewDragHelper {
                 break;
             }
 
-            case MotionEventCompat.ACTION_POINTER_UP: {
-                final int pointerId = MotionEventCompat.getPointerId(ev, actionIndex);
+            case MotionEvent.ACTION_POINTER_UP: {
+                final int pointerId = ev.getPointerId(actionIndex);
                 clearMotionHistory(pointerId);
                 break;
             }
@@ -1317,10 +1315,10 @@ public class ViewDragHelper {
     private void releaseViewForPointerUp() {
         mVelocityTracker.computeCurrentVelocity(1000, mMaxVelocity);
         final float xvel = clampMag(
-                VelocityTrackerCompat.getXVelocity(mVelocityTracker, mActivePointerId),
+                mVelocityTracker.getXVelocity(mActivePointerId),
                 mMinVelocity, mMaxVelocity);
         final float yvel = clampMag(
-                VelocityTrackerCompat.getYVelocity(mVelocityTracker, mActivePointerId),
+                mVelocityTracker.getYVelocity(mActivePointerId),
                 mMinVelocity, mMaxVelocity);
         if (getViewDragState() == STATE_DRAGGING)
             dispatchViewReleased(xvel, yvel);
@@ -1333,7 +1331,10 @@ public class ViewDragHelper {
         final int oldTop = mCapturedView.getTop();
         if (dx != 0) {
             clampedX = mCallback.clampViewPositionHorizontal(mCapturedView, left, dx);
-            mCapturedView.offsetLeftAndRight(clampedX - oldLeft);
+            //增加是否透明的判断
+            if (mCallback.isPageTranslucent()) {
+                mCapturedView.offsetLeftAndRight(clampedX - oldLeft);
+            }
         }
         if (dy != 0) {
             clampedY = mCallback.clampViewPositionVertical(mCapturedView, top, dy);
@@ -1343,8 +1344,10 @@ public class ViewDragHelper {
         if (dx != 0 || dy != 0) {
             final int clampedDx = clampedX - oldLeft;
             final int clampedDy = clampedY - oldTop;
-            mCallback
-                    .onViewPositionChanged(mCapturedView, clampedX, clampedY, clampedDx, clampedDy);
+            //增加是否透明的判断
+            if (mCallback.isPageTranslucent()) {
+                mCallback.onViewPositionChanged(mCapturedView, clampedX, clampedY, clampedDx, clampedDy);
+            }
         }
     }
 

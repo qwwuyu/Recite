@@ -110,8 +110,7 @@ public class SearchWordActivity extends BaseActivity implements Toolbar.OnMenuIt
 
     @Override
     public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.anim_no, R.anim.anim_no);
+        finishNoAnim();
     }
 
     @Override

@@ -42,7 +42,7 @@ public class SplashActivity extends BaseActivity {
             if (msg.what == 0) {
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
-                finishNoAnim();
+                finish();
             }
             return true;
         }
@@ -91,7 +91,7 @@ public class SplashActivity extends BaseActivity {
     private void goMain() {
         Intent intent = new Intent(context, MainActivity.class);
         startActivity(intent);
-        finishNoAnim();
+        finish();
     }
 
     private void parsingZip() {
@@ -150,10 +150,5 @@ public class SplashActivity extends BaseActivity {
                 TApplication.orderWords.add(word);
             }
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finishNoAnim();
     }
 }

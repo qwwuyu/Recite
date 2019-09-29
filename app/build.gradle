@@ -41,11 +41,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':swipeback')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"// RecyclerView wrap_content work for 23.2.1
+    implementation "com.android.support:recyclerview-v7:${rootProject.ext.supportVersion}"
     implementation "com.android.support:cardview-v7:${rootProject.ext.supportVersion}"
     implementation "com.android.support:design:${rootProject.ext.supportVersion}"
-    implementation "com.jakewharton:butterknife:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
-    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.jakewhartonVersion}"// butterknife findView bindClick
-    implementation "org.greenrobot:greendao:${rootProject.ext.greendaoVersion}"// greenDAO 数据库框架
-    implementation 'com.bigkoo:pickerview:2.0.8'//PickerView IOS时间轮
+    implementation "com.jakewharton:butterknife:${rootProject.ext.jakewhartonVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${rootProject.ext.jakewhartonVersion}"
+    implementation "org.greenrobot:greendao:${rootProject.ext.greendaoVersion}"
+    implementation 'com.bigkoo:pickerview:2.0.8'
 }

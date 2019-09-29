@@ -1,5 +1,6 @@
-package me.imid.swipebacklayout.lib;
+package swipeback;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -161,23 +162,12 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     /**
-     * Register a callback to be invoked when a swipe event is sent to this
-     * view.
-     * @param listener the swipe listener to attach to this view
-     * @deprecated use {@link #addSwipeListener} instead
-     */
-    @Deprecated
-    public void setSwipeListener(SwipeListener listener) {
-        addSwipeListener(listener);
-    }
-
-    /**
      * Add a callback to be invoked when a swipe event is sent to this view.
      * @param listener the swipe listener to attach to this view
      */
     public void addSwipeListener(SwipeListener listener) {
         if (mListeners == null) {
-            mListeners = new ArrayList<SwipeListener>();
+            mListeners = new ArrayList<>();
         }
         mListeners.add(listener);
     }
@@ -222,7 +212,7 @@ public class SwipeBackLayout extends FrameLayout {
      */
     public void scrollToFinishActivity() {
         final int childWidth = mContentView.getWidth();
-        int left = 0, top = 0;
+        int left, top = 0;
         left = childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE;
         mDragHelper.smoothSlideViewTo(mContentView, left, top);
         invalidate();
@@ -236,11 +226,11 @@ public class SwipeBackLayout extends FrameLayout {
         try {
             return mDragHelper.shouldInterceptTouchEvent(event);
         } catch (Exception e) {
-//            e.printStackTrace();
             return false;
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!mEnable) {
@@ -249,7 +239,6 @@ public class SwipeBackLayout extends FrameLayout {
         try {
             mDragHelper.processTouchEvent(event);
         } catch (Exception e) {
-//            e.printStackTrace();
             return false;
         }
         return true;
@@ -284,7 +273,7 @@ public class SwipeBackLayout extends FrameLayout {
         if (mScrimOpacity > 0 && drawContent
                 && mDragHelper.getViewDragState() != ViewDragHelper.STATE_IDLE) {
             drawShadow(canvas, child);
-            drawScrim(canvas, child);
+            //drawScrim(canvas, child);
         }
         return ret;
     }
@@ -375,6 +364,11 @@ public class SwipeBackLayout extends FrameLayout {
         }
 
         @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+            return Math.min(child.getWidth(), Math.max(left, 0));
+        }
+
+        @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
             super.onViewPositionChanged(changedView, left, top, dx, dy);
             mScrollPercent = Math.abs((float) left / (mContentView.getWidth() /*+ mShadowLeft.getIntrinsicWidth()*/));
@@ -401,28 +395,55 @@ public class SwipeBackLayout extends FrameLayout {
                     mActivity.finish();
                 }
             }
-
-
         }
 
         @Override
         public void onViewReleased(View releasedChild, float xvel, float yvel) {
             final int childWidth = releasedChild.getWidth();
 
-            int left = 0, top = 0;
+            int left, top = 0;
             //判断释放以后是应该滑到最右边(关闭)，还是最左边（还原）
             left = xvel > 0 || xvel == 0 && mScrollPercent > mScrollThreshold ? childWidth
                     + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE : 0;
 
-
-            mDragHelper.settleCapturedViewAt(left, top);
-            invalidate();
+            // settleCapturedViewAt中调用了ViewDragHelper内部mScroller的startScroll()方法，然后通过invalidate刷新就可以触发SwipeBackLayout的自行滚动
+            if (isPageTranslucent()) {
+                // 当前page背景是透明时，释放手指后才可以滑动
+                mDragHelper.settleCapturedViewAt(left, top);
+                invalidate();
+            } else {
+                if (left > 0 && !mActivity.isFinishing()) {
+                    SwipeBackUtils.convertActivityFromTranslucent(mActivity);
+                    mActivity.finish();
+                }
+            }
         }
 
         @Override
-        public int clampViewPositionHorizontal(View child, int left, int dx) {
-            return Math.min(child.getWidth(), Math.max(left, 0));
+        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+            super.onEdgeDragStarted(edgeFlags, pointerId);
+            SwipeBackUtils.convertActivityToTranslucent(mActivity, new SwipeBackUtils.PageTranslucentListener() {
+                @Override
+                public void onPageTranslucent() {
+                    SwipeBackUtils.log("convertActivityToTranslucent end");
+                    setPageTranslucent(true);
+                }
+            });
         }
+
+        public boolean isPageTranslucent() {
+            return SwipeBackLayout.this.isPageTranslucent();
+        }
+    }
+
+    private boolean pageTranslucent = false;
+
+    public void setPageTranslucent(boolean pageTranslucent) {
+        this.pageTranslucent = pageTranslucent;
+    }
+
+    public boolean isPageTranslucent() {
+        return pageTranslucent;
     }
 
     public void setPercentOffset(float percent, float offset) {

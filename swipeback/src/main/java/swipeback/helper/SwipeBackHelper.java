@@ -1,4 +1,4 @@
-package me.imid.swipebacklayout.lib.helper;
+package swipeback.helper;
 
 import android.app.Activity;
 

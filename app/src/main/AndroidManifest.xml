@@ -46,7 +46,6 @@
         <!-- 收藏单词列表 -->
         <activity
             android:name=".activity.word.CollectWordsActivity"
-            android:launchMode="singleTop"
             android:theme="@style/AppTheme.SlideActTheme"/>
         <!-- 正序单词列表 -->
         <activity

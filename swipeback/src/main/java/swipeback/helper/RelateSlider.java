@@ -1,6 +1,6 @@
-package me.imid.swipebacklayout.lib.helper;
+package swipeback.helper;
 
-import me.imid.swipebacklayout.lib.SwipeListener;
+import swipeback.SwipeListener;
 
 /**
  * Created by Mr.Jude on 2015/8/26.
