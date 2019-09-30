@@ -1,36 +1,37 @@
 package swipeback.helper;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.ViewGroup;
 
 import swipeback.SwipeBackLayout;
-import swipeback.SwipeListener;
 
 /**
  * Created by Mr.Jude on 2015/8/3.
  * 每个滑动页面的管理
  */
 public class SwipeBackPage {
-    //仅为判断是否需要将mSwipeBackLayout注入进去
+    /** 是否启用滑动 */
     private boolean mEnable = true;
+    /** 是否启用联动 */
     private boolean mRelativeEnable = false;
+    /** 设置联动偏移量 */
+    private float offset = 0.25f;
 
-    Activity mActivity;
-    SwipeBackLayout mSwipeBackLayout;
-    RelateSlider slider;
+    Activity activity;
+    private SwipeBackLayout mSwipeBackLayout;
+    private RelateSlider slider;
 
     SwipeBackPage(Activity activity) {
-        this.mActivity = activity;
+        this.activity = activity;
     }
 
     //页面的回调用于配置滑动效果
     void onCreate() {
-        mActivity.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        mActivity.getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
-        mSwipeBackLayout = new SwipeBackLayout(mActivity);
+        activity.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        activity.getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
+        mSwipeBackLayout = new SwipeBackLayout(activity);
         mSwipeBackLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         slider = new RelateSlider(this);
     }
@@ -39,85 +40,81 @@ public class SwipeBackPage {
         handleLayout();
     }
 
-
-    @TargetApi(11)
-    public SwipeBackPage setSwipeRelateEnable(boolean enable) {
-        mRelativeEnable = enable;
-        slider.setEnable(enable);
-        return this;
+    private void handleLayout() {
+        if (mEnable || mRelativeEnable) {
+            mSwipeBackLayout.attachToActivity(activity);
+        } else {
+            mSwipeBackLayout.removeFromActivity(activity);
+        }
     }
 
-    public SwipeBackPage setSwipeRelateOffset(float offset) {
-        slider.setOffset(Math.min(Math.max(0, offset), 1));
-        return this;
-    }
-
-    //是否可滑动关闭
+    /** 是否启用滑动 */
     public SwipeBackPage setSwipeBackEnable(boolean enable) {
         mEnable = enable;
-        mSwipeBackLayout.setEnableGesture(enable);
+        mSwipeBackLayout.setEnable(enable);
         handleLayout();
         return this;
     }
 
-    private void handleLayout() {
-        if (mEnable || mRelativeEnable) {
-            mSwipeBackLayout.attachToActivity(mActivity);
+    /** 是否启用联动 */
+    public SwipeBackPage setSwipeRelateEnable(boolean enable) {
+        mRelativeEnable = enable;
+        if (enable) {
+            mSwipeBackLayout.addSwipeListener(slider);
         } else {
-            mSwipeBackLayout.removeFromActivity(mActivity);
+            mSwipeBackLayout.removeSwipeListener(slider);
         }
+        handleLayout();
+        return this;
     }
 
-    //可滑动的范围。百分比。200表示为左边200px的屏幕
+    /** 设置联动偏移百分比 */
+    public SwipeBackPage setSwipeRelateOffset(float offset) {
+        this.offset = Math.min(Math.max(0, offset), 1);
+        return this;
+    }
+
+    /** 设置触发滑动范围 */
     public SwipeBackPage setSwipeEdge(int swipeEdge) {
         mSwipeBackLayout.setEdgeSize(swipeEdge);
         return this;
     }
 
-    //可滑动的范围。百分比。0.2表示为左边20%的屏幕
+    /** 设置触发滑动范围 */
     public SwipeBackPage setSwipeEdgePercent(float swipeEdgePercent) {
         mSwipeBackLayout.setEdgeSizePercent(swipeEdgePercent);
         return this;
     }
 
-    //对横向滑动手势的敏感程度。0为迟钝 1为敏感
+    /** 对横向滑动手势的敏感程度。0为迟钝 1为敏感 */
     public SwipeBackPage setSwipeSensitivity(float sensitivity) {
-        mSwipeBackLayout.setSensitivity(mActivity, sensitivity);
+        mSwipeBackLayout.setSensitivity(activity, sensitivity);
         return this;
     }
 
-    //底层阴影颜色
+    /** 底层阴影颜色 */
     public SwipeBackPage setScrimColor(int color) {
         mSwipeBackLayout.setScrimColor(color);
         return this;
     }
 
-    //触发关闭Activity百分比
+    /** 触发关闭Activity百分比 */
     public SwipeBackPage setClosePercent(float percent) {
         mSwipeBackLayout.setScrollThreshold(percent);
         return this;
     }
 
+    /** 设置是否取消事件获取 */
     public SwipeBackPage setDisallowInterceptTouchEvent(boolean disallowIntercept) {
         mSwipeBackLayout.setDisallowInterceptTouchEvent(disallowIntercept);
         return this;
     }
 
-    public SwipeBackPage addListener(SwipeListener listener) {
-        mSwipeBackLayout.addSwipeListener(listener);
-        return this;
+    void setPercentOffset(float percent) {
+        mSwipeBackLayout.setPercentOffset(percent, offset);
     }
 
-    public SwipeBackPage removeListener(SwipeListener listener) {
-        mSwipeBackLayout.removeSwipeListener(listener);
-        return this;
-    }
-
-    public SwipeBackLayout getSwipeBackLayout() {
-        return mSwipeBackLayout;
-    }
-
-    public void scrollToFinishActivity() {
+    void scrollToFinishActivity() {
         mSwipeBackLayout.scrollToFinishActivity();
     }
 }

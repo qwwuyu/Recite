@@ -12,7 +12,7 @@ public class SwipeBackHelper {
 
     private static SwipeBackPage findHelperByActivity(Activity activity) {
         for (SwipeBackPage swipeBackPage : mPageStack) {
-            if (swipeBackPage.mActivity == activity) return swipeBackPage;
+            if (swipeBackPage.activity == activity) return swipeBackPage;
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class SwipeBackHelper {
             throw new RuntimeException("You Should call SwipeBackHelper.onCreate(activity) first");
         }
         mPageStack.remove(page);
-        page.mActivity = null;
+        page.activity = null;
     }
 
     public static void finish(Activity activity) {
