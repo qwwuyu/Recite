@@ -53,9 +53,9 @@ public class ViewDragHelper {
 
     public static final int EDGE_SIZE = 20; // dp
 
-    private static final int BASE_SETTLE_DURATION = 1000; // ms
+    private static final int BASE_SETTLE_DURATION = 256; // ms
 
-    private static final int MAX_SETTLE_DURATION = 5000; // ms
+    private static final int MAX_SETTLE_DURATION = 1000; // ms
 
     /** 当前状态 */
     private int mDragState;

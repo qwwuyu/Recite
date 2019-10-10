@@ -8,6 +8,8 @@ import com.qwwuyu.recite.config.TApplication;
 import com.qwwuyu.recite.ui.WordView;
 
 import butterknife.BindView;
+import swipeback.SwipeBackUtils;
+import swipeback.helper.SwipeBackHelper;
 
 /**
  * 单词详情界面
@@ -39,5 +41,16 @@ public class WordDetailActivity extends BaseActivity {
         } else {
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        SwipeBackUtils.convertActivityToTranslucent(this, new SwipeBackUtils.PageTranslucentListener() {
+            @Override
+            public void onPageTranslucent() {
+                SwipeBackHelper.finish(WordDetailActivity.this);
+            }
+        });
     }
 }

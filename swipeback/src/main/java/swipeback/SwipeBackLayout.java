@@ -386,13 +386,18 @@ public class SwipeBackLayout extends FrameLayout {
 
     public void setPercentOffset(float percent, float offset) {
         if (percent == 0) {
-            setX(0);
+            offsetLeftAndRight(0);
+            //setX(0);
             return;
         }
         if (mContentView == null || mContentView.getWidth() == 0) {
             return;
         }
         int width = mContentView.getWidth();
-        setX(Math.min(-width * offset * Math.max(1 - percent, 0), 0));
+        int trans = (int) Math.min(-width * offset * Math.max(1 - percent, 0), 0);
+        SwipeBackUtils.log("trans:" + trans);
+        //setX(Math.min(-width * offset * Math.max(1 - percent, 0), 0));
+        //offsetLeftAndRight((int) Math.min(-width * offset * Math.max(1 - percent, 0), 0));
+        offsetLeftAndRight(1);
     }
 }
