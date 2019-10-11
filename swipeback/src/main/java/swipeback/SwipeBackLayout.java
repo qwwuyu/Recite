@@ -158,9 +158,8 @@ public class SwipeBackLayout extends FrameLayout {
     /** Scroll out contentView and finish the activity */
     public void scrollToFinishActivity() {
         final int childWidth = mContentView.getWidth();
-        int left, top = 0;
-        left = childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE;
-        mDragHelper.smoothSlideViewTo(mContentView, left, top);
+        int left = childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE;
+        mDragHelper.smoothSlideViewTo(mContentView, left);
         invalidate();
     }
 
@@ -280,7 +279,7 @@ public class SwipeBackLayout extends FrameLayout {
 
         /** 控件位置变化 */
         @Override
-        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+        public void onViewPositionChanged(View changedView, int left, int dx) {
             mScrollPercent = Math.abs((float) left / (mContentView.getWidth()));
             mContentLeft = left;
             invalidate();
@@ -308,7 +307,7 @@ public class SwipeBackLayout extends FrameLayout {
 
         /** 当手势释放 */
         @Override
-        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+        public void onViewReleased(View releasedChild, float xvel) {
             SwipeBackUtils.log("onViewReleased:" + xvel);
             final int childWidth = releasedChild.getWidth();
 
@@ -317,7 +316,7 @@ public class SwipeBackLayout extends FrameLayout {
                     childWidth + mShadowLeft.getIntrinsicWidth() + OVERSCROLL_DISTANCE : 0;
 
             if (isPageTranslucent()) {// 当窗口透明后才允许修改位置，释放手指后才可以滑动
-                mDragHelper.settleCapturedViewAt(left, 0);
+                mDragHelper.settleCapturedViewAt(left);
                 invalidate();
             } else if (left > 0 && !mActivity.isFinishing()) {// 在未透明前并且超过释放范围
                 SwipeBackUtils.convertActivityFromTranslucent(mActivity);
@@ -385,19 +384,12 @@ public class SwipeBackLayout extends FrameLayout {
     }
 
     public void setPercentOffset(float percent, float offset) {
-        if (percent == 0) {
-            offsetLeftAndRight(0);
-            //setX(0);
-            return;
-        }
         if (mContentView == null || mContentView.getWidth() == 0) {
             return;
         }
         int width = mContentView.getWidth();
         int trans = (int) Math.min(-width * offset * Math.max(1 - percent, 0), 0);
-        SwipeBackUtils.log("trans:" + trans);
-        //setX(Math.min(-width * offset * Math.max(1 - percent, 0), 0));
-        //offsetLeftAndRight((int) Math.min(-width * offset * Math.max(1 - percent, 0), 0));
-        offsetLeftAndRight(1);
+        //setX(trans);
+        mContentView.offsetLeftAndRight(trans - mContentView.getLeft());
     }
 }
