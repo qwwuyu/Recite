@@ -22,8 +22,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.widget.OverScroller;
 
 import java.util.Arrays;
 
@@ -53,9 +53,9 @@ public class ViewDragHelper {
 
     public static final int EDGE_SIZE = 20; // dp
 
-    private static final int BASE_SETTLE_DURATION = 256; // ms
+    private static final int BASE_SETTLE_DURATION = 64; // ms
 
-    private static final int MAX_SETTLE_DURATION = 1000; // ms
+    private static final int MAX_SETTLE_DURATION = 256; // ms
 
     /** 当前状态 */
     private int mDragState;
@@ -124,7 +124,7 @@ public class ViewDragHelper {
          * @param left        New X coordinate of the left edge of the view
          * @param dx          Change in X position from the last call
          */
-        public void onViewPositionChanged(View changedView, int left, int dx) {
+        public void onViewPositionChanged(View changedView, float left, float dx) {
         }
 
         /**
@@ -241,12 +241,7 @@ public class ViewDragHelper {
     /**
      * Interpolator defining the animation curve for mScroller
      */
-    private static final Interpolator sInterpolator = new Interpolator() {
-        public float getInterpolation(float t) {
-            t -= 1.0f;
-            return t * t * t * t * t + 1.0f;
-        }
-    };
+    private static final Interpolator sInterpolator = new AccelerateDecelerateInterpolator();
 
     private final Runnable mSetIdleRunnable = new Runnable() {
         public void run() {
@@ -401,9 +396,9 @@ public class ViewDragHelper {
     public void abort() {
         cancel();
         if (mDragState == STATE_SETTLING) {
-            final int oldX = mScroller.getCurrX();
+            final float oldX = mScroller.getCurrX();
             mScroller.abortAnimation();
-            final int newX = mScroller.getCurrX();
+            final float newX = mScroller.getCurrX();
             mCallback.onViewPositionChanged(mCapturedView, newX, newX - oldX);
         }
         setDragState(STATE_IDLE);
@@ -574,14 +569,11 @@ public class ViewDragHelper {
     public boolean continueSettling(boolean deferCallbacks) {
         if (mDragState == STATE_SETTLING) {
             boolean keepGoing = mScroller.computeScrollOffset();
-            final int x = mScroller.getCurrX();
-            final int dx = x - mCapturedView.getLeft();
+            final float x = mScroller.getCurrX();
+            final float dx = x - mCapturedView.getLeft();
 
             if (dx != 0) {
-                mCapturedView.offsetLeftAndRight(dx);
-            }
-
-            if (dx != 0) {
+                mCapturedView.offsetLeftAndRight((int) dx);
                 mCallback.onViewPositionChanged(mCapturedView, x, dx);
             }
 
