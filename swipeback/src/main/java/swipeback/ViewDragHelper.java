@@ -124,7 +124,7 @@ public class ViewDragHelper {
          * @param left        New X coordinate of the left edge of the view
          * @param dx          Change in X position from the last call
          */
-        public void onViewPositionChanged(View changedView, float left, float dx) {
+        public void onViewPositionChanged(View changedView, int left, int dx) {
         }
 
         /**
@@ -396,9 +396,9 @@ public class ViewDragHelper {
     public void abort() {
         cancel();
         if (mDragState == STATE_SETTLING) {
-            final float oldX = mScroller.getCurrX();
+            final int oldX = mScroller.getCurrX();
             mScroller.abortAnimation();
-            final float newX = mScroller.getCurrX();
+            final int newX = mScroller.getCurrX();
             mCallback.onViewPositionChanged(mCapturedView, newX, newX - oldX);
         }
         setDragState(STATE_IDLE);
@@ -458,7 +458,7 @@ public class ViewDragHelper {
         }
 
         final int duration = computeSettleDuration(mCapturedView, dx, xvel);
-        mScroller.startScroll(startLeft, 0, dx, 0, duration);
+        mScroller.startScroll(startLeft, dx, duration);
 
         setDragState(STATE_SETTLING);
         return true;
@@ -550,8 +550,7 @@ public class ViewDragHelper {
             throw new IllegalStateException("Cannot flingCapturedView outside of a call to " + "Callback#onViewReleased");
         }
 
-        mScroller.fling(mCapturedView.getLeft(), 0, (int) mVelocityTracker.getXVelocity(mActivePointerId), 0,
-                minLeft, maxLeft, 0, 0);
+        mScroller.fling(mCapturedView.getLeft(), (int) mVelocityTracker.getXVelocity(mActivePointerId), minLeft, maxLeft);
 
         setDragState(STATE_SETTLING);
     }
@@ -569,11 +568,11 @@ public class ViewDragHelper {
     public boolean continueSettling(boolean deferCallbacks) {
         if (mDragState == STATE_SETTLING) {
             boolean keepGoing = mScroller.computeScrollOffset();
-            final float x = mScroller.getCurrX();
-            final float dx = x - mCapturedView.getLeft();
+            final int x = mScroller.getCurrX();
+            final int dx = x - mCapturedView.getLeft();
 
             if (dx != 0) {
-                mCapturedView.offsetLeftAndRight((int) dx);
+                mCapturedView.offsetLeftAndRight(dx);
                 mCallback.onViewPositionChanged(mCapturedView, x, dx);
             }
 

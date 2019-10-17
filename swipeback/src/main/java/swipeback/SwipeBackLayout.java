@@ -279,9 +279,9 @@ public class SwipeBackLayout extends FrameLayout {
 
         /** 控件位置变化 */
         @Override
-        public void onViewPositionChanged(View changedView, float left, float dx) {
+        public void onViewPositionChanged(View changedView, int left, int dx) {
             mScrollPercent = Math.abs(left / (mContentView.getWidth()));
-            mContentLeft = (int) left;
+            mContentLeft = left;
             invalidate();
             if (mScrollPercent < mScrollThreshold && !mIsScrollOverValid) {
                 mIsScrollOverValid = true;
